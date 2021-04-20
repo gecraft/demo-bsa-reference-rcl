@@ -18,6 +18,7 @@ return (<div className={className}>
 
 BookButton.defaultProps = {
   isset: false,
+  isSelected: false,
 };
 
 BookButton.propTypes = {
@@ -29,7 +30,7 @@ BookButton.propTypes = {
   text: PropTypes.string,
   className: PropTypes.string,
   /** An open book, a different style will be applied to it */
-  isSelected: PropTypes.string,
+  isSelected: PropTypes.bool,
   /** Event by clicking on the book. Receives a book ID at the entrance.  */
   onClick: PropTypes.func,
 };
