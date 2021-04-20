@@ -1,6 +1,6 @@
 {
   "name": "demo-bsa-referense-rcl",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
