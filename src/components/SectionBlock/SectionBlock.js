@@ -13,7 +13,7 @@ return (<>
           bookId={el.identifier}
           key={index}
           className={bookWrapClass}
-          isSelected={selectedBookId === el.identifier}
+          isSelected={selectedBookId == el.identifier}
           text={el.text}
           onClick={onClickBook}
         />
