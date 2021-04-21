@@ -1,12 +1,12 @@
 const path = require('path');
-const { name, version } = require('./package.json');
+const { name, version, url } = require('./package.json');
 
 module.exports = {
   components: 'src/components/**/[A-Z]*.js',
-//  ribbon: {
-//    url: 'http://example.com/',
-//    text: 'Fork me on GitHub'
-//  },
+ ribbon: {
+   url,
+   text: 'Open on GitHub'
+ },
   title: `${name} v${version}`,
   moduleAliases: { 'demo-button-component-rcl': path.resolve(__dirname, 'src') },
   skipComponentsWithoutExample: true,
