@@ -14,7 +14,7 @@ function ChapterList({
       {chapters.map((key) => (
         <Chapter
           marginSize={marginSize}
-          currentChapter={selectedChapter === key}
+          currentChapter={String(selectedChapter) === String(key)}
           title={title}
           chapterKey={key}
           onClick={() => onClickChapter(key)}
