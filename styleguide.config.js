@@ -1,20 +1,20 @@
-const path = require('path');
-const { name, version, url } = require('./package.json');
+const path = require("path");
+const { name, version, url } = require("./package.json");
 
 module.exports = {
-  components: 'src/components/**/[A-Z]*.js',
- ribbon: {
-   url,
-   text: 'Open on GitHub'
- },
+  components: "src/components/**/[A-Z]*.js",
+  ribbon: {
+    url,
+    text: "Open on GitHub",
+  },
   title: `${name} v${version}`,
-  moduleAliases: { 'demo-button-component-rcl': path.resolve(__dirname, 'src') },
+  moduleAliases: { "demo-bsa-reference-rcl": path.resolve(__dirname, "src") },
   skipComponentsWithoutExample: true,
-  exampleMode: 'expand',
-  usageMode: 'expand',
-    getComponentPathLine(componentPath) {
-    const componentName = path.basename(componentPath, '.js')
-    return `import { ${componentName} } from '${name}';`
+  exampleMode: "expand",
+  usageMode: "expand",
+  getComponentPathLine(componentPath) {
+    const componentName = path.basename(componentPath, ".js");
+    return `import { ${componentName} } from '${name}';`;
   },
   webpackConfig: {
     module: {
@@ -22,7 +22,7 @@ module.exports = {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          loader: "babel-loader",
         },
       ],
     },

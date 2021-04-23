@@ -1,32 +1,41 @@
-import React from 'react';
-import BookButton from '../BookButton';
-import PropTypes from 'prop-types';
+import React from "react";
+import Book from "../Book";
+import PropTypes from "prop-types";
 
-function SectionBlock({ title, className, bookList, bookWrapClass, selectedBookId, onClickBook }) {
-
-return (<>
-        <h2>{title}</h2>
+function BookList({
+  title,
+  className,
+  bookList,
+  bookWrapClass,
+  selectedBookId,
+  onClickBook,
+}) {
+  return (
+    <>
+      <h2>{title}</h2>
       <div className={className}>
-          {bookList.map((el, index) => (
-        <BookButton
-          isset={el.isset}
-          bookId={el.identifier}
-          key={index}
-          className={bookWrapClass}
-          isSelected={selectedBookId == el.identifier}
-          text={el.text}
-          onClick={onClickBook}
-        />
-      ))}
+        {bookList.map((el, index) => (
+          <Book
+            isset={el.isset}
+            bookId={el.identifier}
+            key={index}
+            className={bookWrapClass}
+            isSelected={selectedBookId == el.identifier}
+            text={el.text}
+            onClick={onClickBook}
+          />
+        ))}
       </div>
-    </>)
+    </>
+  );
 }
 
-SectionBlock.defaultProps = {
+BookList.defaultProps = {
   bookList: [],
+  selectedBookId: false,
 };
 
-SectionBlock.propTypes = {
+BookList.propTypes = {
   /**
    * Block header, for example "New Testament"
    */
@@ -52,4 +61,4 @@ SectionBlock.propTypes = {
   onClickBook: PropTypes.func,
 };
 
-export default SectionBlock;
+export default BookList;

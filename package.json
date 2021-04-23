@@ -1,9 +1,9 @@
 {
-  "name": "demo-bsa-referense-rcl",
+  "name": "demo-bsa-reference-rcl",
   "version": "0.1.7",
   "main": "dist/index.js",
   "license": "MIT",
-  "url": "https://github.com/gecraft/demo-bsa-referense-rcl",
+  "url": "https://github.com/gecraft/demo-bsa-reference-rcl",
   "scripts": {
     "start": "styleguidist server",
     "build": "styleguidist build",
