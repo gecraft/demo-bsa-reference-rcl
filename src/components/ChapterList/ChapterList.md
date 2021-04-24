@@ -11,12 +11,10 @@ const onClickChapter = onClick = (chapterKey) => {
   alert("Click" + chapterKey);
 };
 
-
 <ChapterList
   selectedChapter={selectedChapter}
   chapters={chapters}
   title={title}
   onClickChapter={onClickChapter}
-  
 />;
 ```
