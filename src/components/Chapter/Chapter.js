@@ -6,7 +6,7 @@ function Chapter({ currentChapter, chapterKey, title, marginSize, onClick }) {
   return (
     <Button
       style={{ margin: marginSize }}
-      color={currentChapter ? "primary" : ""}
+      color={currentChapter ? "primary":"inherit"}
       variant="contained"
       onClick={onClick}
     >
