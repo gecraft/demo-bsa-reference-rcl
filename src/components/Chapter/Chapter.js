@@ -29,6 +29,7 @@ Chapter.propTypes = {
   title: PropTypes.string,
    /** Событие при нажатии на главу */
   onClick: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export default Chapter;
