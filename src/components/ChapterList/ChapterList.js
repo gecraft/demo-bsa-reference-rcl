@@ -4,23 +4,25 @@ import PropTypes from "prop-types";
 
 function ChapterList({
   chapters,
+  className,
   title,
   selectedChapter,
   onClickChapter,
-  styleChapter
+  chapterWrapClass
 }) {
   return (
-    <>
-      {chapters.map((key) => (
+    <div className={className}>
+      {chapters.map((el, index) => (
         <Chapter
-          styleChapter={styleChapter}
-          currentChapter={String(selectedChapter) === String(key)}
+          currentChapter={String(selectedChapter) === String(el)}
+          key={index}
           title={title}
-          chapterKey={key}
-          onClick={() => onClickChapter(key)}
+          chapterKey={el}
+          onClick={onClickChapter}
+          className ={chapterWrapClass}
         />
       ))}
-    </>
+    </div>
   );
 }
 
@@ -37,8 +39,7 @@ ChapterList.propTypes = {
   /** Номер текущей главы */
   selectedChapter: PropTypes.string,
   /** Расстояние между кнопками */
-  marginSize: PropTypes.string,
-  /** Событие при нажатии на главу */
+ 
   onClickChapter: PropTypes.func,
 };
 

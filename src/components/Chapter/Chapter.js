@@ -2,16 +2,17 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 
-function Chapter({ currentChapter, chapterKey, title, marginSize, onClick,styleChapter }) {
+function Chapter({ currentChapter,className, chapterKey, title, onClick }) {
   return (
-    <Button
-      style={styleChapter}
+    <div className={className}>
+      <Button
       color={currentChapter ? "primary":"inherit"}
       variant="contained"
-      onClick={onClick}
-    >
+      onClick={() => onClick(chapterKey)}
+      >
       {title} {chapterKey}
-    </Button>
+      </Button>
+    </div>
   );
 }
 
@@ -26,9 +27,7 @@ Chapter.propTypes = {
   chapterKey: PropTypes.string,
   /** Обозначение главы */
   title: PropTypes.string,
-  /** Границы кнопки */
-  marginSize: PropTypes.string,
-  /** Событие при нажатии на главу */
+   /** Событие при нажатии на главу */
   onClick: PropTypes.func,
 };
 
