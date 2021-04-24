@@ -6,14 +6,14 @@ function ChapterList({
   chapters,
   title,
   selectedChapter,
-  marginSize,
   onClickChapter,
+  styleChapter
 }) {
   return (
     <>
       {chapters.map((key) => (
         <Chapter
-          marginSize={marginSize}
+          styleChapter={styleChapter}
           currentChapter={String(selectedChapter) === String(key)}
           title={title}
           chapterKey={key}
@@ -37,7 +37,7 @@ ChapterList.propTypes = {
   /** Номер текущей главы */
   selectedChapter: PropTypes.string,
   /** Расстояние между кнопками */
-  marginSize: PropTypes.number,
+  marginSize: PropTypes.string,
   /** Событие при нажатии на главу */
   onClickChapter: PropTypes.func,
 };

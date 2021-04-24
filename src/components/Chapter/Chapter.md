@@ -6,9 +6,11 @@ import React from "react";
 import { Chapter } from "demo-bsa-reference-rcl";
 
 const currentChapter = true;
-const chapterKey = 1;
+const chapterKey = '1';
 const title = "Chapter";
-const marginSize = 10;
+const styleChapter = {
+  margin:10
+};
 const onClick = () => {
   alert("Click");
 };
@@ -16,7 +18,7 @@ const onClick = () => {
   currentChapter={currentChapter}
   chapterKey={chapterKey}
   title={title}
-  marginSize={marginSize}
+  styleChapter={styleChapter}
   onClick={onClick}
 />;
 ```

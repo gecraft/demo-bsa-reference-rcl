@@ -2,10 +2,10 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 
-function Chapter({ currentChapter, chapterKey, title, marginSize, onClick }) {
+function Chapter({ currentChapter, chapterKey, title, marginSize, onClick,styleChapter }) {
   return (
     <Button
-      style={{ margin: marginSize }}
+      style={styleChapter}
       color={currentChapter ? "primary":"inherit"}
       variant="contained"
       onClick={onClick}
