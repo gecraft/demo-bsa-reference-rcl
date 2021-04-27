@@ -4,22 +4,23 @@ import PropTypes from "prop-types";
 
 function BookList({
   title,
-  className,
+  titleClassName,
   bookList,
-  bookWrapClass,
+  bookListClassName,
+  bookClasses,
   selectedBookId,
   onClickBook,
 }) {
   return (
     <>
-      <h2>{title}</h2>
-      <div className={className}>
+      <h3 className={titleClassName}>{title}</h3>
+      <div className={bookListClassName}>
         {bookList.map((el, index) => (
           <Book
             isset={el.isset}
             bookId={el.identifier}
             key={index}
-            className={bookWrapClass}
+            classes={bookClasses}
             isSelected={selectedBookId == el.identifier}
             text={el.text}
             onClick={onClickBook}
@@ -40,7 +41,7 @@ BookList.propTypes = {
    * Block header, for example "New Testament"
    */
   title: PropTypes.string,
-  className: PropTypes.string,
+  titleClassName: PropTypes.object,
   /**
    * array of books
    */
@@ -54,7 +55,8 @@ BookList.propTypes = {
       text: PropTypes.string,
     })
   ),
-  bookWrapClass: PropTypes.string,
+  bookListClassName: PropTypes.object,
+  bookClasses: PropTypes.object,
   /** An open book, a different style will be applied to it */
   selectedBookId: PropTypes.string,
   /** Event by clicking on the book. Receives a book ID at the entrance.  */

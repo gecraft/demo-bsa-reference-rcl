@@ -2,23 +2,16 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 
-function Book({ isset, bookId, className, isSelected, text, onClick }) {
+function Book({ isset, bookId, classes, isSelected, text, onClick }) {
   return (
-    <div className={className}>
-      {isset ? (
-        isSelected ? (
-          <Button color="secondary" onClick={() => onClick(bookId)}>
-            {text}
-          </Button>
-        ) : (
-          <Button color="primary" onClick={() => onClick(bookId)}>
-            {text}
-          </Button>
-        )
-      ) : (
-        <Button disabled>{text}</Button>
-      )}
-    </div>
+    <Button
+      classes={classes}
+      disabled={!Boolean(isset)}
+      color={isSelected ? "secondary" : "primary"}
+      onClick={() => onClick(bookId)}
+    >
+      {text}
+    </Button>
   );
 }
 
@@ -35,7 +28,7 @@ Book.propTypes = {
   bookId: PropTypes.string,
   /** book title */
   text: PropTypes.string.isRequired,
-  className: PropTypes.string,
+  classes: PropTypes.object,
   /** An open book, a different style will be applied to it */
   isSelected: PropTypes.bool,
   /** Event by clicking on the book. Receives a book ID at the entrance.  */

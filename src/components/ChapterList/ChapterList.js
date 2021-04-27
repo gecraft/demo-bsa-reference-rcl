@@ -8,7 +8,7 @@ function ChapterList({
   title,
   selectedChapter,
   onClickChapter,
-  chapterWrapClass
+  chapterWrapClass,
 }) {
   return (
     <div className={className}>
@@ -19,7 +19,7 @@ function ChapterList({
           title={title}
           chapterKey={el}
           onClick={onClickChapter}
-          className ={chapterWrapClass}
+          className={chapterWrapClass}
         />
       ))}
     </div>
@@ -28,7 +28,7 @@ function ChapterList({
 
 ChapterList.defaultProps = {
   chapters: [],
-  onClickChapter: (chapterId) => {},
+  onClickChapter: (chapterKey) => {},
 };
 
 ChapterList.propTypes = {
@@ -38,8 +38,8 @@ ChapterList.propTypes = {
   chapters: PropTypes.array,
   /** Номер текущей главы */
   selectedChapter: PropTypes.string,
-  className: PropTypes.string,
-  chapterWrapClass: PropTypes.string,
+  className: PropTypes.object,
+  chapterWrapClass: PropTypes.object,
   onClickChapter: PropTypes.func,
 };
 
