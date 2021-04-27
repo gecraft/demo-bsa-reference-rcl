@@ -41,7 +41,7 @@ BookList.propTypes = {
    * Block header, for example "New Testament"
    */
   title: PropTypes.string,
-  titleClassName: PropTypes.object,
+  titleClassName: PropTypes.string,
   /**
    * array of books
    */
@@ -55,7 +55,7 @@ BookList.propTypes = {
       text: PropTypes.string,
     })
   ),
-  bookListClassName: PropTypes.object,
+  bookListClassName: PropTypes.string,
   bookClasses: PropTypes.object,
   /** An open book, a different style will be applied to it */
   selectedBookId: PropTypes.string,

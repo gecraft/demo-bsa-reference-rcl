@@ -38,8 +38,8 @@ ChapterList.propTypes = {
   chapters: PropTypes.array,
   /** Номер текущей главы */
   selectedChapter: PropTypes.string,
-  className: PropTypes.object,
-  chapterWrapClass: PropTypes.object,
+  className: PropTypes.string,
+  chapterWrapClass: PropTypes.string,
   onClickChapter: PropTypes.func,
 };
 
