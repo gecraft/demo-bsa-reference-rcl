@@ -1,6 +1,6 @@
 {
   "name": "demo-bsa-reference-rcl",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "main": "dist/index.js",
   "license": "MIT",
   "url": "https://github.com/gecraft/demo-bsa-reference-rcl",
