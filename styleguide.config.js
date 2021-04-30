@@ -97,6 +97,7 @@ module.exports = {
   sections,
   exampleMode: "expand",
   usageMode: "expand",
+  pagePerSection: true,
   getComponentPathLine(componentPath) {
     const componentName = path.basename(componentPath, ".js");
     return `import { ${componentName} } from '${name}';`;
