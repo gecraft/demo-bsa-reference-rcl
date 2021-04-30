@@ -4,8 +4,8 @@ const { name, version, url } = require("./package.json");
 
 let sections = [
 	{
-		// name: 'README',
-		// content: 'README.md',
+		 name: 'README',
+		 content: 'README.md',
 	},
 	// {
 	// 	name: 'GL Book Package Checker Demo',
@@ -23,7 +23,7 @@ let sections = [
 	{
 		// The difficulty with displaying the various functions this way
 		//	is that they all appear and run on a SINGLE web-page.
-		name: 'Book collection',
+		name: 'BookList collection',
 		// content: 'src/core/README.md',
 		sections: [
 			{
@@ -41,7 +41,7 @@ let sections = [
 	{
 		// The difficulty with displaying core functions this way
 		//	is that they all appear and run on a SINGLE web-page.
-		name: 'Chapter collection',
+		name: 'ChapterList collection',
 		// content: 'src/core/README.md',
 		sections: [
 			{
