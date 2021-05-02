@@ -41,6 +41,7 @@ const bookList = [
         bibleBook={titleBook}
         bookList={bookList}
         label="show existing book"
+        check={true}
       />
     </Typography>
   </CardContent>

@@ -12,37 +12,36 @@ function BibleBookList({
   label,
   check
 }) {
-
+ 
   const [checkState, setCheckState] = useState(false);
-
   const currentBookList =bookList.map((el) => {
     return {...el,text:(bibleBook[el.identifier])}
     }
     );
-
-    const handleChange = () => {
+  const handleChange = () => {
       setCheckState((prev) => !prev);
     };
-
+  const hideCheckRender = check ? (
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={checkState}
+            onChange={handleChange}
+            name="checkedA"
+            color="primary"
+          />
+        }
+        label={label}
+      />
+    ) : (
+      []
+    );
   return (
     <>
-    <FormControlLabel
-      control={
-        <Checkbox
-          checked={checkState}
-          onChange={handleChange}
-          name="checkedA"
-          color="primary"
-        />
-      }
-      label={label}
-    />
+    {hideCheckRender}
       <BookList
       bookList={currentBookList.filter((el) => checkState?el.isset===true:[])}
-      
       />
-
-      
     </>
   );
 }
