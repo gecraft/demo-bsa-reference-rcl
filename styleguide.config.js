@@ -18,6 +18,10 @@ let sections = [
 			{
 				name: 'BookList',
 				content: 'src/components/BookList/BookList.md',
+			},
+			{
+				name: 'BibleBookList',
+				content: 'src/components/BibleBookList/BibleBookList.md',
 			},			
 		]
 	},
