@@ -37,7 +37,11 @@ const bookList = [
 <Card>
   <CardContent>
     <Typography variant="body2" component="p">
-      <BibleBookList bibleBook={titleBook} bookList={bookList} />
+      <BibleBookList
+        bibleBook={titleBook}
+        bookList={bookList}
+        label="show existing book"
+      />
     </Typography>
   </CardContent>
 </Card>;
