@@ -7,6 +7,7 @@ import { BookList } from "demo-bsa-reference-rcl";
 
 <BookList
   title="New Testament"
+  showInactive={true}
   bookList={[
     {
       isset: true,

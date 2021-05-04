@@ -10,22 +10,26 @@ function BookList({
   bookClasses,
   selectedBookId,
   onClickBook,
+  showInactive,
 }) {
   return (
     <>
       <h3 className={titleClassName}>{title}</h3>
       <div className={bookListClassName}>
-        {bookList.map((el, index) => (
-          <Book
-            isset={el.isset}
-            bookId={el.identifier}
-            key={index}
-            classes={bookClasses}
-            isSelected={selectedBookId == el.identifier}
-            text={el.text}
-            onClick={onClickBook}
-          />
-        ))}
+        {bookList.map(
+          (el, index) =>
+            (showInactive || el.isset) && (
+              <Book
+                isset={el.isset}
+                bookId={el.identifier}
+                key={index}
+                classes={bookClasses}
+                isSelected={selectedBookId == el.identifier}
+                text={el.text}
+                onClick={onClickBook}
+              />
+            )
+        )}
       </div>
     </>
   );
@@ -33,18 +37,15 @@ function BookList({
 
 BookList.defaultProps = {
   bookList: [],
+  showInactive: true,
   selectedBookId: false,
 };
 
 BookList.propTypes = {
-  /**
-   * Block header, for example "New Testament"
-   */
+  /** Block header, for example "New Testament" */
   title: PropTypes.string,
   titleClassName: PropTypes.string,
-  /**
-   * array of books
-   */
+  /** array of books */
   bookList: PropTypes.arrayOf(
     PropTypes.shape({
       /** Is there a book or not */
@@ -59,7 +60,9 @@ BookList.propTypes = {
   bookClasses: PropTypes.object,
   /** An open book, a different style will be applied to it */
   selectedBookId: PropTypes.string,
-  /** Event by clicking on the book. Receives a book ID at the entrance.  */
+  /** Whether to display inactive books */
+  showInactive: PropTypes.bool,
+  /** Event by clicking on the book. Receives a book ID at the entrance */
   onClickBook: PropTypes.func,
 };
 
