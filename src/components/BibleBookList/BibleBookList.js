@@ -26,7 +26,6 @@ function BibleBookList({
         <Checkbox
           checked={checkState}
           onChange={handleChange}
-          name="checkedA"
           color="primary"
         />
       }
@@ -39,9 +38,8 @@ function BibleBookList({
     <>
       {hideCheckRender}
       <BookList
-        bookList={currentBookList.filter((el) =>
-          checkState ? el.isset === true : []
-        )}
+        bookList={currentBookList}
+        showInactive={!checkState}
         onClickBook={onClickBook}
         selectedBookId={selectedBookId}
         onClickBook={(bookId) => {
