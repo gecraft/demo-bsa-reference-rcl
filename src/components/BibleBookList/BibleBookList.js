@@ -10,7 +10,9 @@ function BibleBookList({
   bibleBook,
   bookList,
   label,
-  check
+  check,
+  onClickBook,
+  selectedBookId
 }) {
  
   const [checkState, setCheckState] = useState(false);
@@ -41,6 +43,11 @@ function BibleBookList({
     {hideCheckRender}
       <BookList
       bookList={currentBookList.filter((el) => checkState?el.isset===true:[])}
+      onClickBook={onClickBook}
+      selectedBookId={selectedBookId}
+      onClickBook={(bookId) => {
+        alert("bookId " + bookId);
+      }}
       />
     </>
   );

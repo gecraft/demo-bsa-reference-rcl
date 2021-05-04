@@ -7,6 +7,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { BibleBookList } from "demo-bsa-reference-rcl";
+
 const titleBook = {
   mat: "Матфей",
   mrk: "Марк",
@@ -42,6 +43,7 @@ const bookList = [
         bookList={bookList}
         label="show existing book"
         check={true}
+        selectedBookId="luk"
       />
     </Typography>
   </CardContent>
