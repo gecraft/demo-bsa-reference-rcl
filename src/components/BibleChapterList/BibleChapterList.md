@@ -6,11 +6,8 @@ import { BibleChapterList } from "demo-bsa-reference-rcl";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  chapterList: {
     margin: theme.spacing(1),
-  },
-  list: {
-    display: "flex",
   },
 }));
 const classes = useStyles();
@@ -21,7 +18,6 @@ const classes = useStyles();
   onClickChapter={(chapterId) => {
     alert("chapterId " + chapterId);
   }}
-  chapterListClasses={classes.root}
-  chapterClasses={classes.list}
+  chapterListClasses={classes}
 />;
 ```

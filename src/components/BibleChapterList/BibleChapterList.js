@@ -14,7 +14,7 @@ function BibleChapterList({
 }) {
     
   const chapters = Object.keys(ChaptersConfig[bookId]);
-  console.log(chapters)
+  
   return (
       <ChapterList
         text={text}
@@ -46,7 +46,7 @@ BibleChapterList.propTypes = {
     })
   ),
   chapterClasses: PropTypes.object,
-  /** An open chapter, a different style will be applied to it */
+   /** An open chapter, a different style will be applied to it */
   selectedChapter: PropTypes.string,
   /** Event by clicking on the chapter. Receives a chapter ID at the entrance. */
   onClickChapter: PropTypes.func,
