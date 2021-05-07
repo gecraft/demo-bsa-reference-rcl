@@ -1,45 +1,57 @@
 import React from "react";
 import Chapter from "../Chapter";
 import PropTypes from "prop-types";
+import { Box } from "@material-ui/core";
 
 function ChapterList({
-  chapters,
-  className,
-  title,
+  text,
+  chapterList,
+  chapterListClasses,
+  chapterClasses,
   selectedChapter,
   onClickChapter,
-  chapterWrapClass,
 }) {
   return (
-    <div className={className}>
-      {chapters.map((el, index) => (
+    <>
+    <Box classname={chapterListClasses?.chapterList}>
+      {chapterList.map((el, index) => (
         <Chapter
-          currentChapter={String(selectedChapter) === String(el)}
+          chapterId={el}
           key={index}
-          title={title}
-          chapterKey={el}
+          className={chapterListClasses?.chapter}
+          classes={chapterClasses} 
+          isSelected={String(selectedChapter) === String(el)}
+          text={text}
           onClick={onClickChapter}
-          className={chapterWrapClass}
         />
       ))}
-    </div>
+    </Box>
+    </> 
   );
 }
 
 ChapterList.defaultProps = {
-  chapters: [],
-  onClickChapter: (chapterKey) => {},
+  chapterList: [],
+  selectedChapter: '',
 };
 
 ChapterList.propTypes = {
-  /** Обозначение глав в массиве */
-  title: PropTypes.string,
-  /** Массив глав*/
-  chapters: PropTypes.array,
-  /** Номер текущей главы */
+  /** chapter's title */
+  text: PropTypes.string,
+  /** array of chapters*/
+  chapterList: PropTypes.array,
+  chapterListClasses: PropTypes.objectOf(
+    PropTypes.shape({
+      /** chapter className */
+      chapter: PropTypes.string,
+      /** chapterList className */
+      chapterList: PropTypes.string,
+    })
+  ),
+  chapterClasses: PropTypes.object,
+  /** An open chapter, a different style will be applied to it */
   selectedChapter: PropTypes.string,
-  className: PropTypes.string,
-  chapterWrapClass: PropTypes.string,
+  /** Event by clicking on the chapter. Receives a chapter ID at the entrance. */
   onClickChapter: PropTypes.func,
 };
 
