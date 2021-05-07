@@ -4,39 +4,51 @@ import { ChaptersConfig } from "./config";
 import PropTypes from "prop-types";
 
 function BibleChapterList({
-    bookId,
-  className,
-  title,
+  text,  
+  bookId,
+  chapterListClasses,
+  chapterClasses,
   selectedChapter,
   onClickChapter,
-  chapterWrapClass,
+  
 }) {
-    console.log(ChaptersConfig[bookId]);
-    const chapters = Object.keys(ChaptersConfig[bookId]);
+    
+  const chapters = Object.keys(ChaptersConfig[bookId]);
+  console.log(chapters)
   return (
       <ChapterList
-  selectedChapter={selectedChapter}
-  chapters={chapters}
-  title={title}
-  onClickChapter={onClickChapter}
-/>
+        text={text}
+        chapterListClasses={chapterListClasses}
+        chapterClasses={chapterClasses}
+        selectedChapter={selectedChapter}
+        chapterList={chapters}
+        onClickChapter={onClickChapter}
+      />
   );
 }
 
 BibleChapterList.defaultProps = {
   bookId: "mat",
-  onClickChapter: (chapterKey) => {},
+  onClickChapter: (chapterId) => {},
 };
 
 BibleChapterList.propTypes = {
-  /** Обозначение глав в массиве */
-  title: PropTypes.string,
-  /** Book ID */
-  bookId: PropTypes.string.isRequired,
-  /** Номер текущей главы */
+  /** chapter's title */
+  text: PropTypes.string,
+  /** bookId*/
+  bookID: PropTypes.string,
+  chapterListClasses: PropTypes.objectOf(
+    PropTypes.shape({
+      /** chapter className */
+      chapter: PropTypes.string,
+      /** chapterList className */
+      chapterList: PropTypes.string,
+    })
+  ),
+  chapterClasses: PropTypes.object,
+  /** An open chapter, a different style will be applied to it */
   selectedChapter: PropTypes.string,
-  className: PropTypes.string,
-  chapterWrapClass: PropTypes.string,
+  /** Event by clicking on the chapter. Receives a chapter ID at the entrance. */
   onClickChapter: PropTypes.func,
 };
 

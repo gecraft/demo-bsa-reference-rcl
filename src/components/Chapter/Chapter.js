@@ -10,7 +10,7 @@ function Chapter({ isSelected, classes, className, chapterId, text, onClick }) {
         color={isSelected ? "secondary" : "primary"}
         onClick={() => onClick(chapterId)}
       >
-        {text + ' ' + chapterId}
+        {text}  {chapterId}
       </Button>    
   );
 }

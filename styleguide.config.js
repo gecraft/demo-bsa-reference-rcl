@@ -53,7 +53,7 @@ module.exports = {
   title: `${name} v${version}`,
   moduleAliases: { "demo-bsa-reference-rcl": path.resolve(__dirname, "src") },
   skipComponentsWithoutExample: true,
-  sections,
+  // sections,
   exampleMode: "expand",
   usageMode: "expand",
   pagePerSection: true,

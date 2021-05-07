@@ -13,7 +13,7 @@ function ChapterList({
 }) {
   return (
     <>
-    <Box classname={chapterListClasses?.chapterList}>
+    <Box className={chapterListClasses?.chapterList}>
       {chapterList.map((el, index) => (
         <Chapter
           chapterId={el}
