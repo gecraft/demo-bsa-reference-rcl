@@ -1,50 +1,51 @@
 import React from "react";
 import Book from "../Book";
 import PropTypes from "prop-types";
+import { Box } from "@material-ui/core";
 
 function BookList({
   title,
-  titleClassName,
   bookList,
-  bookListClassName,
+  bookListClasses,
   bookClasses,
   selectedBookId,
   onClickBook,
+  showInactive,
 }) {
   return (
     <>
-      <h3 className={titleClassName}>{title}</h3>
-      <div className={bookListClassName}>
-        {bookList.map((el, index) => (
-          <Book
-            isset={el.isset}
-            bookId={el.identifier}
-            key={index}
-            classes={bookClasses}
-            isSelected={selectedBookId == el.identifier}
-            text={el.text}
-            onClick={onClickBook}
-          />
-        ))}
-      </div>
+      <div className={bookListClasses?.title}>{title}</div>
+      <Box className={bookListClasses?.bookList}>
+        {bookList.map(
+          (el, index) =>
+            (showInactive || el.isset) && (
+              <Book
+                isset={el.isset}
+                bookId={el.identifier}
+                key={index}
+                className={bookListClasses?.book}
+                classes={bookClasses}
+                isSelected={selectedBookId == el.identifier}
+                text={el.text}
+                onClick={onClickBook}
+              />
+            )
+        )}
+      </Box>
     </>
   );
 }
 
 BookList.defaultProps = {
   bookList: [],
-  selectedBookId: false,
+  showInactive: true,
+  selectedBookId: '',
 };
 
 BookList.propTypes = {
-  /**
-   * Block header, for example "New Testament"
-   */
+  /** Block header, for example "New Testament" */
   title: PropTypes.string,
-  titleClassName: PropTypes.string,
-  /**
-   * array of books
-   */
+  /** array of books */
   bookList: PropTypes.arrayOf(
     PropTypes.shape({
       /** Is there a book or not */
@@ -55,11 +56,22 @@ BookList.propTypes = {
       text: PropTypes.string,
     })
   ),
-  bookListClassName: PropTypes.string,
+  bookListClasses: PropTypes.objectOf(
+    PropTypes.shape({
+      /** title className */
+      title: PropTypes.string,
+      /** book className */
+      book: PropTypes.string,
+      /** bookList className */
+      bookList: PropTypes.string,
+    })
+  ),
   bookClasses: PropTypes.object,
   /** An open book, a different style will be applied to it */
   selectedBookId: PropTypes.string,
-  /** Event by clicking on the book. Receives a book ID at the entrance.  */
+  /** Whether to display inactive books */
+  showInactive: PropTypes.bool,
+  /** Event by clicking on the book. Receives a book ID at the entrance */
   onClickBook: PropTypes.func,
 };
 
