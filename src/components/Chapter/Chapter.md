@@ -5,17 +5,15 @@ import React from "react";
 
 import { Chapter } from "demo-bsa-reference-rcl";
 
-const currentChapter = true;
-const chapterKey = "1";
-const title = "Chapter";
-
 const onClick = (chapterKey) => {
   alert("Click" + chapterKey);
 };
 <Chapter
-  currentChapter={currentChapter}
-  chapterKey={chapterKey}
-  title={title}
-  onClick={onClick}
+  chapterId="1"
+  isSelected={true}
+  text="Chapter"
+  onClick={(chapterId) => {
+    alert("chapterId " + chapterId);
+  }}
 />;
 ```

@@ -52,6 +52,8 @@ const onClickBook = (bookId) => alert("bookId " + bookId);
 
 ### Using MUI Styles
 
+You can override the styles of the entire Button component.
+
 ```jsx
 import React from "react";
 import { Book } from "demo-bsa-reference-rcl";
@@ -110,6 +112,45 @@ const onClickBook = (bookId) => alert("bookId " + bookId);
     classes={classes}
     bookId="mar"
     isSelected={true}
+    text="Mark"
+    onClick={onClickBook}
+  />
+</>;
+```
+
+You can also use a regular class.
+
+```jsx
+import React from "react";
+import { Book } from "demo-bsa-reference-rcl";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  orangeButton: {
+    padding: "10px 30px",
+    color: "black",
+  },
+  smallButton: {
+    fontSize: "12px",
+    fontWeight: "bold",
+    height: 24,
+  },
+}));
+
+const classes = useStyles();
+
+const onClickBook = (bookId) => alert("bookId " + bookId);
+
+<>
+  <Book
+    className={classes.orangeButton}
+    bookId="tit"
+    text="Titus"
+    onClick={onClickBook}
+  />
+  <Book
+    className={classes.smallButton}
+    bookId="mar"
     text="Mark"
     onClick={onClickBook}
   />

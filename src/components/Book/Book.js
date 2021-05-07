@@ -2,15 +2,16 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 
-function Book({ isset, bookId, classes, isSelected, text, onClick }) {
+function Book({ isset, bookId, classes, className, isSelected, text, onClick }) {
   return (
     <Button
+      className={className}
       classes={classes}
       disabled={!Boolean(isset)}
       color={isSelected ? "secondary" : "primary"}
       onClick={() => onClick(bookId)}
     >
-      {text}
+      {text ?? bookId}
     </Button>
   );
 }
@@ -27,8 +28,9 @@ Book.propTypes = {
   /** unique three-letter identifier */
   bookId: PropTypes.string,
   /** book title */
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   classes: PropTypes.object,
+  className: PropTypes.string,
   /** An open book, a different style will be applied to it */
   isSelected: PropTypes.bool,
   /** Event by clicking on the book. Receives a book ID at the entrance.  */

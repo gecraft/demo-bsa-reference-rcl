@@ -2,22 +2,22 @@ Array of buttons - selected current chapter
 
 ```jsx
 import React from "react";
-import { ChapterList } from "demo-bsa-reference-rcl";
+import { BibleChapterList } from "demo-bsa-reference-rcl";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  chapter: {
-    margin: theme.spacing(1),
-  },
   chapterList: {
-    display: "flex",
+    margin: theme.spacing(1),
   },
 }));
 const classes = useStyles();
-<ChapterList
+<BibleChapterList
   selectedChapter="3"
-  chapterList={["1", "2", "3", "4"]}
-  text="Chapter"
+  bookId="gen"
+  text="Ch."
+  onClickChapter={(chapterId) => {
+    alert("chapterId " + chapterId);
+  }}
   chapterListClasses={classes}
 />;
 ```

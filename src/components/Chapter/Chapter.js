@@ -2,35 +2,35 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 
-function Chapter({ currentChapter, className, chapterKey, title, onClick }) {
+function Chapter({ isSelected, classes, className, chapterId, text, onClick }) {
   return (
-    <div className={className}>
       <Button
-        color={currentChapter ? "primary" : "inherit"}
-        variant="contained"
-        onClick={() => onClick(chapterKey)}
+        className={className}
+        classes={classes}
+        color={isSelected ? "secondary" : "primary"}
+        onClick={() => onClick(chapterId)}
       >
-        {title} {chapterKey}
-      </Button>
-    </div>
+        {text}  {chapterId}
+      </Button>    
   );
 }
 
 Chapter.defaultProps = {
-  currentChapter: false,
-  onClick: (chapterKey) => {},
+  isSelected: false,
+  onClick: (chapterId) => {},
 };
 
 Chapter.propTypes = {
-  /** Текущая глава */
-  currentChapter: PropTypes.bool,
-  /** Идентификатор главы */
-  chapterKey: PropTypes.string,
-  /** Обозначение главы */
-  title: PropTypes.string,
-  /** Событие при нажатии на главу */
-  onClick: PropTypes.func,
+  /** chapter identifier  */
+  chapterId: PropTypes.string,
+  /** chapter title */
+  text: PropTypes.string,
+  classes: PropTypes.object,
   className: PropTypes.string,
+  /** An open chapter, a different style will be applied to it */
+  isSelected: PropTypes.bool,
+  /** Event by clicking on the chapter. Receives a chapter ID at the entrance. */
+  onClick: PropTypes.func,
 };
 
 export default Chapter;
