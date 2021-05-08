@@ -19,7 +19,8 @@ function BibleBookList({
   bookListClassName,
   bookClasses,
   allTestament,
-  showTitle
+  showTitle,
+  sortFirstNT
 }) {
   // const[testamentState,setTestamentState]=useState(false);
   const [checkState, setCheckState] = useState(false); 
@@ -38,7 +39,8 @@ function BibleBookList({
   };
   
   const testamentList=[{title:titleOT?titleOT:"Old Testament", id:currentBookListOT},{title:titleNT?titleNT:"New Testament", id:currentBookListNT}]
- testamentList.sort();
+  //  testamentList.sort();
+  if (sortFirstNT === true) {testamentList.reverse()};
   
   const hideCheckRender = check ? (
     <FormControlLabel

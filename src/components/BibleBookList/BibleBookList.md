@@ -35,6 +35,7 @@ const availableBookList = [
     allTestament={true}
     titleOT="Ветхий завет"
     showTitle={true}
+    sortFirstNT={true}
   />
 </>;
 ```
