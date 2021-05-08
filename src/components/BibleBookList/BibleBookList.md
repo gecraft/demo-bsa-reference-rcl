@@ -23,17 +23,18 @@ const availableBookList = [
   "luk",
   "tit",
 ];
-const testament = "bible-nt";
+
 <>
   <BibleBookList
     titleBook={titleBook}
     availableBookList={availableBookList}
     title="New Testament"
-    testament={testament}
     label="show existing book"
     check={true}
     selectedBookId="exo"
     onClickBook={onClickBook}
+    allTestament={true}
+    titleOT="Ветхий завет"
   />
 </>;
 ```

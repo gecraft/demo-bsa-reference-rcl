@@ -36,7 +36,7 @@ BibleChapterList.propTypes = {
   /** chapter's title */
   text: PropTypes.string,
   /** bookId*/
-  bookID: PropTypes.string,
+  bookId: PropTypes.string,
   chapterListClasses: PropTypes.objectOf(
     PropTypes.shape({
       /** chapter className */
