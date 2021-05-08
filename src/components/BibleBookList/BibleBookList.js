@@ -18,7 +18,7 @@ function BibleBookList({
   titleBook,
   bookListClassName,
   bookClasses,
-  allTestament,
+  allTestaments,
   showTitle,
   sortFirstNT
 }) {
@@ -58,7 +58,7 @@ function BibleBookList({
   );
   return (
     <>{hideCheckRender}
-     {allTestament?(testamentList.map((el,index) => {
+     {allTestaments?(testamentList.map((el,index) => {
         return        (<BookList
   title={showTitle===true?el.title:[]}
   bookList={el.id}
