@@ -11,14 +11,15 @@ function BibleBookList({
   onClickBook,
   selectedBookId,
   singleTestament,
-  title,
+  singleTitle,
   titleOT,
   titleNT,
   availableBookList,
   titleBook,
   bookListClassName,
   bookClasses,
-  allTestament
+  allTestament,
+  showTitle
 }) {
   // const[testamentState,setTestamentState]=useState(false);
   const [checkState, setCheckState] = useState(false); 
@@ -35,9 +36,7 @@ function BibleBookList({
      const handleChange = () => {
     setCheckState((prev) => !prev);
   };
-  // const handleTestamentChange = () => {
-  //   setTestamentState((prev) => !prev);
-  // };
+  
   const testamentList=[{title:titleOT?titleOT:"Old Testament", id:currentBookListOT},{title:titleNT?titleNT:"New Testament", id:currentBookListNT}]
  testamentList.sort();
   
@@ -59,7 +58,7 @@ function BibleBookList({
     <>{hideCheckRender}
      {allTestament?(testamentList.map((el,index) => {
         return        (<BookList
-  title={el.title}
+  title={showTitle===true?el.title:[]}
   bookList={el.id}
   showInactive={!checkState}
   onClickBook={onClickBook}
@@ -70,17 +69,14 @@ function BibleBookList({
   key={index}/>)
 }
 )):(<BookList
-  title={title}
-  bookList={(singleTestament='ot')?currentBookListOT:(singleTestament='nt')?currentBookListNT:currentBookList}
+  title={showTitle===true?((singleTestament==='ot')?(singleTitle?singleTitle:"Old Testament"):(singleTestament==='nt')?(singleTitle?singleTitle:"New Testament"):singleTitle):[]}
+  bookList={(singleTestament==='ot')?(currentBookListOT):('nt')?(currentBookListNT):(currentBookList)}
   showInactive={!checkState}
   onClickBook={onClickBook}
   selectedBookId={selectedBookId}
   bookListClassName={bookListClassName}
   bookClasses={bookClasses}/>)
-}
-
-
-      
+}      
     </>
   );
 }
