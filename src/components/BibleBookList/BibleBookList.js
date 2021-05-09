@@ -10,23 +10,38 @@ function BibleBookList({
   check,
   onClickBook,
   selectedBookId,
-  testament,
-  title,
+  singleTestament,
+  singleTitle,
+  titleOT,
+  titleNT,
   availableBookList,
   titleBook,
   bookListClassName,
   bookClasses,
+  allTestaments,
+  showTitle,
+  sortFirstNT
 }) {
+  // const[testamentState,setTestamentState]=useState(false);
   const [checkState, setCheckState] = useState(false); 
   const currentBookList = bibleList.map((el) => {
     return {...el, text: titleBook && titleBook[el.identifier] ? titleBook[el.identifier] : ALL_BIBLE_BOOKS[el.identifier],
        isset: availableBookList ?.includes(el.identifier) ? true : false}
-    }).filter((el) => 
-    testament ? el.categories === testament :
-     el.categories === 'bible-ot' ||'bible-nt');
-  const handleChange = () => {
+    });
+
+  const currentBookListOT = currentBookList.filter((el) => 
+     el.categories === 'bible-ot' );
+    
+     const currentBookListNT = currentBookList.filter((el) => 
+     el.categories  ==='bible-nt' );
+     const handleChange = () => {
     setCheckState((prev) => !prev);
   };
+  
+  const testamentList=[{title:titleOT?titleOT:"Old Testament", id:currentBookListOT},{title:titleNT?titleNT:"New Testament", id:currentBookListNT}]
+  //  testamentList.sort();
+  if (sortFirstNT === true) {testamentList.reverse()};
+  
   const hideCheckRender = check ? (
     <FormControlLabel
       control={
@@ -42,18 +57,28 @@ function BibleBookList({
     []
   );
   return (
-    <>
-      {hideCheckRender}
-      <BookList
-        title={title}
-        bookList={currentBookList}
-        showInactive={!checkState}
-        onClickBook={onClickBook}
-        selectedBookId={selectedBookId}
-        bookListClassName={bookListClassName}
-        bookClasses={bookClasses}
-
-      />
+    <>{hideCheckRender}
+     {allTestaments?(testamentList.map((el,index) => {
+        return        (<BookList
+  title={showTitle===true?el.title:[]}
+  bookList={el.id}
+  showInactive={!checkState}
+  onClickBook={onClickBook}
+  selectedBookId={selectedBookId}
+  bookListClassName={bookListClassName}
+  bookClasses={bookClasses}
+  
+  key={index}/>)
+}
+)):(<BookList
+  title={showTitle===true?((singleTestament==='ot')?(singleTitle?singleTitle:"Old Testament"):(singleTestament==='nt')?(singleTitle?singleTitle:"New Testament"):singleTitle):[]}
+  bookList={(singleTestament==='ot')?(currentBookListOT):('nt')?(currentBookListNT):(currentBookList)}
+  showInactive={!checkState}
+  onClickBook={onClickBook}
+  selectedBookId={selectedBookId}
+  bookListClassName={bookListClassName}
+  bookClasses={bookClasses}/>)
+}      
     </>
   );
 }

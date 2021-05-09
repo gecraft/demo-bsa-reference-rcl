@@ -1,4 +1,4 @@
-Show list of books
+Show 2 Testaments
 
 ```jsx
 import React from "react";
@@ -23,17 +23,60 @@ const availableBookList = [
   "luk",
   "tit",
 ];
-const testament = "bible-nt";
+
 <>
   <BibleBookList
     titleBook={titleBook}
     availableBookList={availableBookList}
-    title="New Testament"
-    testament={testament}
     label="show existing book"
     check={true}
     selectedBookId="exo"
     onClickBook={onClickBook}
+    allTestaments={true}
+    titleOT="Ветхий завет"
+    showTitle={true}
+    sortFirstNT={true}
+  />
+</>;
+```
+
+Show 1 Testament
+
+```jsx
+import React from "react";
+import { BibleBookList } from "demo-bsa-reference-rcl";
+
+const titleBook = {
+  mat: " Матфей ",
+  mrk: " Марк ",
+  luk: " Лука ",
+  tit: " Титу ",
+};
+
+const onClickBook = (bookId) => alert("bookId " + bookId);
+const availableBookList = [
+  "gen",
+  "exo",
+  "lev",
+  "num",
+  "deu",
+  "mat",
+  "mrk",
+  "luk",
+  "tit",
+];
+
+<>
+  <BibleBookList
+    titleBook={titleBook}
+    availableBookList={availableBookList}
+    singleTitle="Новый завет"
+    label="show existing book"
+    check={true}
+    selectedBookId="exo"
+    onClickBook={onClickBook}
+    singleTestament="nt"
+    showTitle={true}
   />
 </>;
 ```
