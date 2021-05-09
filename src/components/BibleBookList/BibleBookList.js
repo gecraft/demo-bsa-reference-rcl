@@ -16,13 +16,13 @@ function BibleBookList({
   titleNT,
   availableBookList,
   titleBook,
-  bookListClassName,
+  bookListClasses,
   bookClasses,
   allTestaments,
   showTitle,
   sortFirstNT
 }) {
-  // const[testamentState,setTestamentState]=useState(false);
+ 
   const [checkState, setCheckState] = useState(false); 
   const currentBookList = bibleList.map((el) => {
     return {...el, text: titleBook && titleBook[el.identifier] ? titleBook[el.identifier] : ALL_BIBLE_BOOKS[el.identifier],
@@ -39,7 +39,7 @@ function BibleBookList({
   };
   
   const testamentList=[{title:titleOT?titleOT:"Old Testament", id:currentBookListOT},{title:titleNT?titleNT:"New Testament", id:currentBookListNT}]
-  //  testamentList.sort();
+  
   if (sortFirstNT === true) {testamentList.reverse()};
   
   const hideCheckRender = check ? (
@@ -65,7 +65,7 @@ function BibleBookList({
   showInactive={!checkState}
   onClickBook={onClickBook}
   selectedBookId={selectedBookId}
-  bookListClassName={bookListClassName}
+  bookListClasses={bookListClasses}
   bookClasses={bookClasses}
   
   key={index}/>)
@@ -76,7 +76,7 @@ function BibleBookList({
   showInactive={!checkState}
   onClickBook={onClickBook}
   selectedBookId={selectedBookId}
-  bookListClassName={bookListClassName}
+  bookListClasses={bookListClasses}
   bookClasses={bookClasses}/>)
 }      
     </>
@@ -86,25 +86,53 @@ function BibleBookList({
 BibleBookList.defaultProps = {};
 
 BibleBookList.propTypes = {
+  
   /**
-   * Block header, for example "New Testament"
+   * When prop is true, show 2 Testaments
    */
-  title: PropTypes.string,
-  titleClassName: PropTypes.string,
+  allTestaments: PropTypes.bool,
   /**
-   * array of books
+   * Block header of "New Testament" 
    */
-  bookList: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** Is there a book or not */
-      isset: PropTypes.bool,
-      /** unique three-letter identifier */
-      identifier: PropTypes.string,
-      /** book title */
-      text: PropTypes.string,
-    })
-  ),
-  bookListClassName: PropTypes.string,
+  titleNT: PropTypes.string,
+  /**
+   * Block header of "New Testament" 
+   */
+  titleOT: PropTypes.string,
+  /**
+   * Show block header
+   */
+  showTitle:PropTypes.bool,
+    /**
+   * When true, show first NT, second - OT
+   */
+  sortFirstNT:PropTypes.bool,
+ /**
+   * Array of bookId
+   */
+  availableBookList: PropTypes.array,
+/**
+   * Array of bookId with titles ,needfull to translate
+   */
+  titleBook: PropTypes.object,
+  /**
+   * When show 1 Testament, need to write title of Testament
+   */
+  singleTitle: PropTypes.string,
+ /**
+   * When show 1 Testament, need to choose 'ot' or 'nt'
+   */
+  singleTestament: PropTypes.string,
+  /**
+   * True/false ===show/not show checkbox
+   */
+  check:PropTypes.bool,
+  /**
+   * label of check
+   */
+  label: PropTypes.string,
+
+  bookListClasses: PropTypes.string,
   bookClasses: PropTypes.object,
   /** An open book, a different style will be applied to it */
   selectedBookId: PropTypes.string,
