@@ -19,5 +19,8 @@ const classes = useStyles();
   chapterList={["1", "2", "3", "4"]}
   text="Chapter"
   chapterListClasses={classes}
+  onClickChapter={(chapterId) => {
+    alert("chapterId " + chapterId);
+  }}
 />;
 ```
