@@ -1,51 +1,82 @@
-Show list of books
+Show 2 Testaments
 
 ```jsx
 import React from "react";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 import { BibleBookList } from "demo-bsa-reference-rcl";
 
 const titleBook = {
-  mat: "Матфей",
-  mrk: "Марк",
-  luk: "Лука",
-  tit: "Титу",
+  mat: " Матфей ",
+  mrk: " Марк ",
+  luk: " Лука ",
+  tit: " Титу ",
 };
-const bookList = [
-  {
-    isset: true,
-    identifier: "mat",
-  },
-  {
-    isset: false,
-    identifier: "mrk",
-  },
-  {
-    isset: true,
-    identifier: "luk",
-    text: "Luke",
-  },
-  {
-    isset: true,
-    identifier: "tit",
-    text: "Titus",
-  },
+
+const onClickBook = (bookId) => alert("bookId " + bookId);
+const availableBookList = [
+  "gen",
+  "exo",
+  "lev",
+  "num",
+  "deu",
+  "mat",
+  "mrk",
+  "luk",
+  "tit",
 ];
 
-<Card>
-  <CardContent>
-    <Typography variant="body2" component="p">
-      <BibleBookList
-        bibleBook={titleBook}
-        bookList={bookList}
-        label="show existing book"
-        check={true}
-        selectedBookId="luk"
-      />
-    </Typography>
-  </CardContent>
-</Card>;
+<>
+  <BibleBookList
+    titleBook={titleBook}
+    availableBookList={availableBookList}
+    label="show existing book"
+    check={true}
+    selectedBookId="exo"
+    onClickBook={onClickBook}
+    allTestaments={true}
+    titleOT="Ветхий завет"
+    showTitle={true}
+    sortFirstNT={true}
+  />
+</>;
+```
+
+Show 1 Testament
+
+```jsx
+import React from "react";
+import { BibleBookList } from "demo-bsa-reference-rcl";
+
+const titleBook = {
+  mat: " Матфей ",
+  mrk: " Марк ",
+  luk: " Лука ",
+  tit: " Титу ",
+};
+
+const onClickBook = (bookId) => alert("bookId " + bookId);
+const availableBookList = [
+  "gen",
+  "exo",
+  "lev",
+  "num",
+  "deu",
+  "mat",
+  "mrk",
+  "luk",
+  "tit",
+];
+
+<>
+  <BibleBookList
+    titleBook={titleBook}
+    availableBookList={availableBookList}
+    singleTitle="Новый завет"
+    label="show existing book"
+    check={true}
+    selectedBookId="exo"
+    onClickBook={onClickBook}
+    singleTestament="nt"
+    showTitle={true}
+  />
+</>;
 ```

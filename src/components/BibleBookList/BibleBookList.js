@@ -1,87 +1,143 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import BookList from "../BookList";
 import PropTypes from "prop-types";
-import {bibleList,ALL_BIBLE_BOOKS} from "./config";
-import Checkbox from '@material-ui/core/Checkbox';
-import { FormControlLabel } from '@material-ui/core';
-
+import { bibleList, ALL_BIBLE_BOOKS } from "./config";
+import Checkbox from "@material-ui/core/Checkbox";
+import { FormControlLabel } from "@material-ui/core";
 
 function BibleBookList({
-  bibleBook,
-  bookList,
   label,
   check,
   onClickBook,
-  selectedBookId
+  selectedBookId,
+  singleTestament,
+  singleTitle,
+  titleOT,
+  titleNT,
+  availableBookList,
+  titleBook,
+  bookListClasses,
+  bookClasses,
+  allTestaments,
+  showTitle,
+  sortFirstNT
 }) {
  
-  const [checkState, setCheckState] = useState(false);
-  const currentBookList =bookList.map((el) => {
-    return {...el,text:(bibleBook[el.identifier])}
-    }
-    );
-  const handleChange = () => {
-      setCheckState((prev) => !prev);
-    };
+  const [checkState, setCheckState] = useState(false); 
+  const currentBookList = bibleList.map((el) => {
+    return {...el, text: titleBook && titleBook[el.identifier] ? titleBook[el.identifier] : ALL_BIBLE_BOOKS[el.identifier],
+       isset: availableBookList ?.includes(el.identifier) ? true : false}
+    });
+
+  const currentBookListOT = currentBookList.filter((el) => 
+     el.categories === 'bible-ot' );
+    
+     const currentBookListNT = currentBookList.filter((el) => 
+     el.categories  ==='bible-nt' );
+     const handleChange = () => {
+    setCheckState((prev) => !prev);
+  };
+  
+  const testamentList=[{title:titleOT?titleOT:"Old Testament", id:currentBookListOT},{title:titleNT?titleNT:"New Testament", id:currentBookListNT}]
+  
+  if (sortFirstNT === true) {testamentList.reverse()};
+  
   const hideCheckRender = check ? (
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={checkState}
-            onChange={handleChange}
-            name="checkedA"
-            color="primary"
-          />
-        }
-        label={label}
-      />
-    ) : (
-      []
-    );
+    <FormControlLabel
+      control={
+        <Checkbox
+          checked={checkState}
+          onChange={handleChange}
+          color="primary"
+        />
+      }
+      label={label}
+    />
+  ) : (
+    []
+  );
   return (
-    <>
-    {hideCheckRender}
-      <BookList
-      bookList={currentBookList.filter((el) => checkState?el.isset===true:[])}
-      onClickBook={onClickBook}
-      selectedBookId={selectedBookId}
-      onClickBook={(bookId) => {
-        alert("bookId " + bookId);
-      }}
-      />
+    <>{hideCheckRender}
+     {allTestaments?(testamentList.map((el,index) => {
+        return        (<BookList
+  title={showTitle===true?el.title:[]}
+  bookList={el.id}
+  showInactive={!checkState}
+  onClickBook={onClickBook}
+  selectedBookId={selectedBookId}
+  bookListClasses={bookListClasses}
+  bookClasses={bookClasses}
+  
+  key={index}/>)
+}
+)):(<BookList
+  title={showTitle===true?((singleTestament==='ot')?(singleTitle?singleTitle:"Old Testament"):(singleTestament==='nt')?(singleTitle?singleTitle:"New Testament"):singleTitle):[]}
+  bookList={(singleTestament==='ot')?(currentBookListOT):('nt')?(currentBookListNT):(currentBookList)}
+  showInactive={!checkState}
+  onClickBook={onClickBook}
+  selectedBookId={selectedBookId}
+  bookListClasses={bookListClasses}
+  bookClasses={bookClasses}/>)
+}      
     </>
   );
 }
 
-BibleBookList.defaultProps = {
-  
-};
+BibleBookList.defaultProps = {};
 
 BibleBookList.propTypes = {
-  // /**
-  //  * Block header, for example "New Testament"
-  //  */
-  // title: PropTypes.string,
-  // titleClassName: PropTypes.string,
-  // /**
-  //  * array of books
-  //  */
-  // bookList: PropTypes.arrayOf(
-  //   PropTypes.shape({
-  //     /** Is there a book or not */
-  //     isset: PropTypes.bool,
-  //     /** unique three-letter identifier */
-  //     identifier: PropTypes.string,
-  //     /** book title */
-  //     text: PropTypes.string,
-  //   })
-  // ),
-  // bookListClassName: PropTypes.string,
-  // bookClasses: PropTypes.object,
-  // /** An open book, a different style will be applied to it */
-  // selectedBookId: PropTypes.string,
-  // /** Event by clicking on the book. Receives a book ID at the entrance.  */
-  // onClickBook: PropTypes.func,
+  
+  /**
+   * When prop is true, show 2 Testaments
+   */
+  allTestaments: PropTypes.bool,
+  /**
+   * Block header of "New Testament" 
+   */
+  titleNT: PropTypes.string,
+  /**
+   * Block header of "New Testament" 
+   */
+  titleOT: PropTypes.string,
+  /**
+   * Show block header
+   */
+  showTitle:PropTypes.bool,
+    /**
+   * When true, show first NT, second - OT
+   */
+  sortFirstNT:PropTypes.bool,
+ /**
+   * Array of bookId
+   */
+  availableBookList: PropTypes.array,
+/**
+   * Array of bookId with titles ,needfull to translate
+   */
+  titleBook: PropTypes.object,
+  /**
+   * When show 1 Testament, need to write title of Testament
+   */
+  singleTitle: PropTypes.string,
+ /**
+   * When show 1 Testament, need to choose 'ot' or 'nt'
+   */
+  singleTestament: PropTypes.string,
+  /**
+   * True/false ===show/not show checkbox
+   */
+  check:PropTypes.bool,
+  /**
+   * label of check
+   */
+  label: PropTypes.string,
+
+  bookListClasses: PropTypes.string,
+  bookClasses: PropTypes.object,
+  /** An open book, a different style will be applied to it */
+  selectedBookId: PropTypes.string,
+  /** Event by clicking on the book. Receives a book ID at the entrance.  */
+  onClickBook: PropTypes.func,
 };
 
 export default BibleBookList;
