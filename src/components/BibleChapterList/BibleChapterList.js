@@ -13,7 +13,7 @@ function BibleChapterList({
   
 }) {
     
-  const chapters = Object.keys(ChaptersConfig[bookId]);
+  const chapters = bookId?(Object.keys(ChaptersConfig[bookId])):[];
   
   return (
       <ChapterList
@@ -28,7 +28,7 @@ function BibleChapterList({
 }
 
 BibleChapterList.defaultProps = {
-  bookId: "mat",
+  
   onClickChapter: (chapterId) => {},
 };
 
