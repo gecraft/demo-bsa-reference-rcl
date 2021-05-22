@@ -11,7 +11,6 @@ function BibleBookList({
   onClickBook,
   selectedBookId,
   singleTestament,
-  singleTitle,
   titleOT,
   titleNT,
   availableBookList,
@@ -71,7 +70,7 @@ function BibleBookList({
   key={index}/>)
 }
 )):(<BookList
-  title={showTitle===true?((singleTestament==='ot')?(singleTitle?singleTitle:"Old Testament"):(singleTestament==='nt')?(singleTitle?singleTitle:"New Testament"):singleTitle):[]}
+  title={showTitle===true?((singleTestament==='ot')?(titleOT?titleOT:"Old Testament"):(singleTestament==='nt')?(titleNT?titleNT:"New Testament"):stitleNT):[]}
   bookList={(singleTestament==='ot')?(currentBookListOT):('nt')?(currentBookListNT):(currentBookList)}
   showInactive={!checkState}
   onClickBook={onClickBook}
@@ -117,10 +116,6 @@ BibleBookList.propTypes = {
   titleBook: PropTypes.object,
   /**
    * When show 1 Testament, need to write title of Testament
-   */
-  singleTitle: PropTypes.string,
- /**
-   * When show 1 Testament, need to choose 'ot' or 'nt'
    */
   singleTestament: PropTypes.string,
   /**

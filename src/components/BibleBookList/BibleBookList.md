@@ -70,7 +70,6 @@ const availableBookList = [
   <BibleBookList
     titleBook={titleBook}
     availableBookList={availableBookList}
-    singleTitle="Новый завет"
     label="show existing book"
     check={true}
     selectedBookId="exo"
