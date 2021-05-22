@@ -70,7 +70,7 @@ function BibleBookList({
   key={index}/>)
 }
 )):(<BookList
-  title={showTitle===true?((singleTestament==='ot')?(titleOT?titleOT:"Old Testament"):(singleTestament==='nt')?(titleNT?titleNT:"New Testament"):stitleNT):[]}
+  title={showTitle===true?((singleTestament==='ot')?(titleOT?titleOT:"Old Testament"):(singleTestament==='nt')?(titleNT?titleNT:"New Testament"):titleNT):[]}
   bookList={(singleTestament==='ot')?(currentBookListOT):('nt')?(currentBookListNT):(currentBookList)}
   showInactive={!checkState}
   onClickBook={onClickBook}
