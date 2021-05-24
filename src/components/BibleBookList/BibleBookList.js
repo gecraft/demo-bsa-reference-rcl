@@ -104,11 +104,14 @@ function BibleBookList({
   );
 }
 
-BibleBookList.defaultProps = {};
+BibleBookList.defaultProps = {
+  check: false,
+  testaments: "all",
+};
 
 BibleBookList.propTypes = {
   /**
-   * When prop is true, show 2 Testaments
+   * When prop is all, show 2 Testaments
    */
   testaments: PropTypes.string,
   /**
