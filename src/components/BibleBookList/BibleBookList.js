@@ -17,11 +17,12 @@ function BibleBookList({
   titleBook,
   bookListClasses,
   bookClasses,
-  /* allTestaments, */
+  Testaments,
   showTitle,
   sortFirstNT,
 }) {
   const [checkState, setCheckState] = useState(false);
+
   const currentBookList = bibleList.map((el) => {
     return {
       ...el,
@@ -45,8 +46,10 @@ function BibleBookList({
   };
 
   const testamentList = [
-    { title: titleOT ? titleOT : "Old Testament", id: currentBookListOT },
-    { title: titleNT ? titleNT : "New Testament", id: currentBookListNT },
+    Testaments === "all"
+      ? ({ title: titleOT ? titleOT : "Old Testament", id: currentBookListOT },
+        { title: titleNT ? titleNT : "New Testament", id: currentBookListNT })
+      : { title: titleNT ? titleNT : "New Testament", id: currentBookListNT },
   ];
 
   if (sortFirstNT === true) {
@@ -70,11 +73,12 @@ function BibleBookList({
   return (
     <>
       {hideCheckRender}
-      { /* allTestaments ? ( */
+      {
+        /* allTestaments ? ( */
         testamentList.map((el, index) => {
           return (
             <BookList
-              title={showTitle === true ? el.title : []}
+              title={showTitle === true ? el.title : ""}
               bookList={el.id}
               showInactive={!checkState}
               onClickBook={onClickBook}
@@ -85,7 +89,7 @@ function BibleBookList({
             />
           );
         })
-      /* ) : (
+        /* ) : (
         <BookList
           title={
             showTitle === true
@@ -113,7 +117,8 @@ function BibleBookList({
           bookListClasses={bookListClasses}
           bookClasses={bookClasses}
         />
-        ) */ }
+        ) */
+      }
     </>
   );
 }

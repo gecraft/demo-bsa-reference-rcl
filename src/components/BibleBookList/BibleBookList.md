@@ -32,7 +32,7 @@ const availableBookList = [
     check={true}
     selectedBookId="exo"
     onClickBook={onClickBook}
-    allTestaments={true}
+    Testaments="all"
     titleOT="Ветхий завет"
     showTitle={true}
     sortFirstNT={true}
@@ -74,7 +74,7 @@ const availableBookList = [
     check={true}
     selectedBookId="exo"
     onClickBook={onClickBook}
-    singleTestament="nt"
+    Testaments="nt"
     showTitle={true}
   />
 </>;
