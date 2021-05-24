@@ -32,7 +32,7 @@ const availableBookList = [
     check={true}
     selectedBookId="exo"
     onClickBook={onClickBook}
-    allTestaments={true}
+    testaments="all"
     titleOT="Ветхий завет"
     showTitle={true}
     sortFirstNT={true}
@@ -70,12 +70,11 @@ const availableBookList = [
   <BibleBookList
     titleBook={titleBook}
     availableBookList={availableBookList}
-    singleTitle="Новый завет"
     label="show existing book"
     check={true}
     selectedBookId="exo"
     onClickBook={onClickBook}
-    singleTestament="nt"
+    testaments="nt"
     showTitle={true}
   />
 </>;
