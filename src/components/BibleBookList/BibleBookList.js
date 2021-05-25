@@ -10,38 +10,65 @@ function BibleBookList({
   check,
   onClickBook,
   selectedBookId,
-  singleTestament,
-  singleTitle,
   titleOT,
   titleNT,
   availableBookList,
   titleBook,
   bookListClasses,
   bookClasses,
-  allTestaments,
+  testaments,
   showTitle,
-  sortFirstNT
+  sortFirstNT,
 }) {
- 
-  const [checkState, setCheckState] = useState(false); 
-  const currentBookList = bibleList.map((el) => {
-    return {...el, text: titleBook && titleBook[el.identifier] ? titleBook[el.identifier] : ALL_BIBLE_BOOKS[el.identifier],
-       isset: availableBookList ?.includes(el.identifier) ? true : false}
-    });
+  const [checkState, setCheckState] = useState(false);
 
-  const currentBookListOT = currentBookList.filter((el) => 
-     el.categories === 'bible-ot' );
-    
-     const currentBookListNT = currentBookList.filter((el) => 
-     el.categories  ==='bible-nt' );
-     const handleChange = () => {
+  const currentBookList = bibleList.map((el) => {
+    return {
+      ...el,
+      text:
+        titleBook && titleBook[el.identifier]
+          ? titleBook[el.identifier]
+          : ALL_BIBLE_BOOKS[el.identifier],
+      isset: availableBookList?.includes(el.identifier) ? true : false,
+    };
+  });
+
+  const currentBookListOT = currentBookList.filter(
+    (el) => el.categories === "bible-ot"
+  );
+
+  const currentBookListNT = currentBookList.filter(
+    (el) => el.categories === "bible-nt"
+  );
+  const handleChange = () => {
     setCheckState((prev) => !prev);
   };
-  
-  const testamentList=[{title:titleOT?titleOT:"Old Testament", id:currentBookListOT},{title:titleNT?titleNT:"New Testament", id:currentBookListNT}]
-  
-  if (sortFirstNT === true) {testamentList.reverse()};
-  
+
+  let testamentList = [
+    { title: titleOT ? titleOT : "Old Testament", bookList: currentBookListOT },
+    { title: titleNT ? titleNT : "New Testament", bookList: currentBookListNT },
+  ];
+
+  if (testaments === "nt") {
+    testamentList = [
+      {
+        title: titleNT ? titleNT : "New Testament",
+        bookList: currentBookListNT,
+      },
+    ];
+  } else if (testaments === "ot") {
+    testamentList = [
+      {
+        title: titleOT ? titleOT : "Old Testament",
+        bookList: currentBookListOT,
+      },
+    ];
+  }
+
+  if (sortFirstNT === true) {
+    testamentList.reverse();
+  }
+
   const hideCheckRender = check ? (
     <FormControlLabel
       control={
@@ -57,76 +84,64 @@ function BibleBookList({
     []
   );
   return (
-    <>{hideCheckRender}
-     {allTestaments?(testamentList.map((el,index) => {
-        return        (<BookList
-  title={showTitle===true?el.title:[]}
-  bookList={el.id}
-  showInactive={!checkState}
-  onClickBook={onClickBook}
-  selectedBookId={selectedBookId}
-  bookListClasses={bookListClasses}
-  bookClasses={bookClasses}
-  
-  key={index}/>)
-}
-)):(<BookList
-  title={showTitle===true?((singleTestament==='ot')?(singleTitle?singleTitle:"Old Testament"):(singleTestament==='nt')?(singleTitle?singleTitle:"New Testament"):singleTitle):[]}
-  bookList={(singleTestament==='ot')?(currentBookListOT):('nt')?(currentBookListNT):(currentBookList)}
-  showInactive={!checkState}
-  onClickBook={onClickBook}
-  selectedBookId={selectedBookId}
-  bookListClasses={bookListClasses}
-  bookClasses={bookClasses}/>)
-}      
+    <>
+      {hideCheckRender}
+      {testamentList.map((el, index) => {
+        return (
+          <BookList
+            title={showTitle === true ? el.title : ""}
+            bookList={el.bookList}
+            showInactive={!checkState}
+            onClickBook={onClickBook}
+            selectedBookId={selectedBookId}
+            bookListClasses={bookListClasses}
+            bookClasses={bookClasses}
+            key={index}
+          />
+        );
+      })}
     </>
   );
 }
 
-BibleBookList.defaultProps = {};
+BibleBookList.defaultProps = {
+  check: false,
+  testaments: "all",
+};
 
 BibleBookList.propTypes = {
-  
   /**
-   * When prop is true, show 2 Testaments
+   * When prop is all, show 2 Testaments
    */
-  allTestaments: PropTypes.bool,
+  testaments: PropTypes.string,
   /**
-   * Block header of "New Testament" 
+   * Block header of "New Testament"
    */
   titleNT: PropTypes.string,
   /**
-   * Block header of "New Testament" 
+   * Block header of "New Testament"
    */
   titleOT: PropTypes.string,
   /**
    * Show block header
    */
-  showTitle:PropTypes.bool,
-    /**
+  showTitle: PropTypes.bool,
+  /**
    * When true, show first NT, second - OT
    */
-  sortFirstNT:PropTypes.bool,
- /**
+  sortFirstNT: PropTypes.bool,
+  /**
    * Array of bookId
    */
   availableBookList: PropTypes.array,
-/**
+  /**
    * Array of bookId with titles ,needfull to translate
    */
   titleBook: PropTypes.object,
   /**
    * When show 1 Testament, need to write title of Testament
    */
-  singleTitle: PropTypes.string,
- /**
-   * When show 1 Testament, need to choose 'ot' or 'nt'
-   */
-  singleTestament: PropTypes.string,
-  /**
-   * True/false ===show/not show checkbox
-   */
-  check:PropTypes.bool,
+  check: PropTypes.bool,
   /**
    * label of check
    */
