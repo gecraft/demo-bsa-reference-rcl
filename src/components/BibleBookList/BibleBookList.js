@@ -147,6 +147,17 @@ BibleBookList.propTypes = {
    */
   label: PropTypes.string,
 
+  chapterListClasses: PropTypes.objectOf(
+    PropTypes.shape({
+      /** chapter className */
+      chapter: PropTypes.string,
+      /** chapterList className */
+      chapterList: PropTypes.string,
+    })
+  ),
+  chapterClasses: PropTypes.object,
+  /** An open chapter, a different style will be applied to it */
+
   bookListClasses: PropTypes.string,
   bookClasses: PropTypes.object,
   /** An open book, a different style will be applied to it */

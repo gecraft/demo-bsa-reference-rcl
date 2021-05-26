@@ -3,6 +3,17 @@ Show 2 Testaments
 ```jsx
 import React from "react";
 import { BibleBookList } from "demo-bsa-reference-rcl";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  bookList: {
+    title: "",
+  },
+  formControlLabel: {
+    label: "",
+  }
+}));
+const classes = useStyles();
 
 const titleBook = {
   mat: " Матфей ",
@@ -45,6 +56,17 @@ Show 1 Testament
 ```jsx
 import React from "react";
 import { BibleBookList } from "demo-bsa-reference-rcl";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  chapter: {
+    margin: theme.spacing(1),
+  },
+  chapterList: {
+    display: "flex",
+  },
+}));
+const classes = useStyles();
 
 const titleBook = {
   mat: " Матфей ",
