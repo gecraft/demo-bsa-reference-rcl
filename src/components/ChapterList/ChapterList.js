@@ -19,20 +19,21 @@ function ChapterList({
           chapterId={el}
           key={index}
           className={chapterListClasses?.chapter}
-          classes={chapterClasses} 
+          classes={chapterClasses}
           isSelected={String(selectedChapter) === String(el)}
           text={text}
           onClick={onClickChapter}
         />
       ))}
     </Box>
-    </> 
+    </>
   );
 }
 
 ChapterList.defaultProps = {
   chapterList: [],
   selectedChapter: '',
+  chapterListClasses: {},
 };
 
 ChapterList.propTypes = {

@@ -1,5 +1,4 @@
-export const BIBLE_BOOKS = {
-  oldTestament: {
+export const OLD_TESTAMENT = {
     'gen': 'Genesis',
     'exo': 'Exodus',
     'lev': 'Leviticus',
@@ -39,8 +38,8 @@ export const BIBLE_BOOKS = {
     'hag': 'Haggai',
     'zec': 'Zechariah',
     'mal': 'Malachi',
-  },
-  newTestament: {
+  }
+export const NEW_TESTAMENT = {
     'mat': 'Matthew',
     'mrk': 'Mark',
     'luk': 'Luke',
@@ -68,14 +67,14 @@ export const BIBLE_BOOKS = {
     '3jn': '3 John',
     'jud': 'Jude',
     'rev': 'Revelation',
-  },
 };
 
-export const ALL_BIBLE_BOOKS = {
-  ...BIBLE_BOOKS.oldTestament,
-  ...BIBLE_BOOKS.newTestament,
+export const BIBLE_BOOKS = {
+  ...NEW_TESTAMENT,
+  ...OLD_TESTAMENT,
 };
-export const bibleList = [
+
+export const OLD_TESTAMENT_LIST = [
   {
     identifier: 'gen',
     isset: false,
@@ -309,7 +308,8 @@ export const bibleList = [
     isset: false,
     sort: 39,
     categories: 'bible-ot',
-  },
+  },];
+export const NEW_TESTAMENT_LIST = [
   {
     identifier: 'mat',
     isset: false,
@@ -473,3 +473,5 @@ export const bibleList = [
     categories: 'bible-nt',
   },
 ];
+export const BIBLE_LIST = OLD_TESTAMENT_LIST.concat(NEW_TESTAMENT_LIST);
+
