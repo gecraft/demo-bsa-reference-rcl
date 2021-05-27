@@ -4,17 +4,17 @@ import { ChaptersConfig } from "./config";
 import PropTypes from "prop-types";
 
 function BibleChapterList({
-  text,  
+  text,
   bookId,
   chapterListClasses,
   chapterClasses,
   selectedChapter,
   onClickChapter,
-  
+
 }) {
-    
+
   const chapters = bookId?(Object.keys(ChaptersConfig[bookId])):[];
-  
+
   return (
       <ChapterList
         text={text}
@@ -28,7 +28,7 @@ function BibleChapterList({
 }
 
 BibleChapterList.defaultProps = {
-  
+  chapterListClasses: {},
   onClickChapter: (chapterId) => {},
 };
 
