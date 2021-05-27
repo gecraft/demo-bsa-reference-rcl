@@ -1,64 +1,84 @@
-const path = require("path");
-const { name, version, url } = require("./package.json");
+const path = require('path');
+const { name, version, url } = require('./package.json');
 
 let sections = [
   {
-    name: "README",
-    content: "README.md",
+    name: 'README',
+    content: 'README.md',
   },
   {
-    name: "BookList collection",
+    name: 'BookList collection',
 
-    sections: [
-      {
-        name: "Book",
-        content: "src/components/Book/Book.md",
-      },
-      {
-        name: "BookList",
-        content: "src/components/BookList/BookList.md",
-      },
-      {
-        name: "BibleBookList",
-        content: "src/components/BibleBookList/BibleBookList.md",
-      },
+    components: [
+      'src/components/Book/Book.js',
+      'src/components/BookList/BookList.js',
+      'src/components/BibleBookList/BibleBookList.js',
     ],
   },
   {
-    name: "ChapterList collection",
+    name: 'ChapterList collection',
 
-    sections: [
-      {
-        name: "Chapter",
-        content: "src/components/Chapter/Chapter.md",
-      },
-      {
-        name: "ChapterList",
-        content: "src/components/ChapterList/ChapterList.md",
-      },
-      {
-        name: "BibleChapterList",
-        content: "src/components/BibleChapterList/BibleChapterList.md",
-      },
+    components: [
+      'src/components/Chapter/Chapter.js',
+      'src/components/ChapterList/ChapterList.js',
+      'src/components/BibleChapterList/BibleChapterList.js',
     ],
   },
 ];
 
 module.exports = {
-  components: "src/components/**/[A-Z]*.js",
+  components: 'src/components/**/[A-Z]*.js',
   ribbon: {
     url,
-    text: "Open on GitHub",
+    text: 'Open on GitHub',
   },
   title: `${name} v${version}`,
-  moduleAliases: { "demo-bsa-reference-rcl": path.resolve(__dirname, "src") },
+  template: {
+    head: {
+      meta: [
+        {
+          name: 'description',
+          content: 'React component library for bible reference',
+        },
+      ],
+      links: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css?family=Fira+Sans:400,600',
+        },
+      ],
+    },
+  },
+  moduleAliases: { [name]: path.resolve(__dirname, 'src') },
   skipComponentsWithoutExample: true,
-  // sections,
-  exampleMode: "expand",
-  usageMode: "expand",
+  sections,
+  styles: {
+    ComponentsList: {
+      isSelected: {
+        fontWeight: 'normal',
+        '&>a': {
+          fontWeight: 'bold !important',
+        },
+      },
+    },
+  },
+  theme: {
+    color: {
+      link: '#4B4E6A',
+      linkHover: '#2B3847',
+      baseBackground: '#fff',
+      border: '#D0DAE4',
+      sidebarBackground: '#fff',
+    },
+    fontFamily: {
+      base: '"Fira Sans", sans-serif',
+    },
+  },
+  exampleMode: 'expand',
+  usageMode: 'expand',
   pagePerSection: true,
   getComponentPathLine(componentPath) {
-    const componentName = path.basename(componentPath, ".js");
+    const componentName = path.basename(componentPath, '.js');
     return `import { ${componentName} } from '${name}';`;
   },
   webpackConfig: {
@@ -67,7 +87,7 @@ module.exports = {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       ],
     },
