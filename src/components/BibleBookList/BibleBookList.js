@@ -1,100 +1,114 @@
-import React, { useState } from "react";
-import BookList from "../BookList";
-import PropTypes from "prop-types";
-import { bibleList, ALL_BIBLE_BOOKS } from "./config";
-import Checkbox from "@material-ui/core/Checkbox";
-import { FormControlLabel } from "@material-ui/core";
+import React, { useState } from 'react';
+import BookList from '../BookList';
+import PropTypes from 'prop-types';
+import { BIBLE_LIST, BIBLE_BOOKS } from './config';
+import Checkbox from '@material-ui/core/Checkbox';
+import { FormControlLabel } from '@material-ui/core';
 
 function BibleBookList({
-  label,
-  check,
+  labelForCheckbox,
+  showCheckbox,
+  showInactive,
   onClickBook,
   selectedBookId,
   titleOT,
   titleNT,
   availableBookList,
-  titleBook,
-  bookListClasses,
+  titleBooks,
+  BibleBookListClasses,
   bookClasses,
   testaments,
   showTitle,
   sortFirstNT,
 }) {
-  const [checkState, setCheckState] = useState(false);
-
-  const currentBookList = bibleList.map((el) => {
+  const [checkState, setCheckState] = useState(!showInactive);
+  const currentBookList = BIBLE_LIST.map((el) => {
     return {
       ...el,
-      text:
-        titleBook && titleBook[el.identifier]
-          ? titleBook[el.identifier]
-          : ALL_BIBLE_BOOKS[el.identifier],
-      isset: availableBookList?.includes(el.identifier) ? true : false,
+      text: titleBooks[el.identifier] ?? BIBLE_BOOKS[el.identifier],
+      isset: availableBookList.includes(el.identifier),
     };
   });
 
   const currentBookListOT = currentBookList.filter(
-    (el) => el.categories === "bible-ot"
+    (el) => el.categories === 'bible-ot'
   );
 
   const currentBookListNT = currentBookList.filter(
-    (el) => el.categories === "bible-nt"
+    (el) => el.categories === 'bible-nt'
   );
   const handleChange = () => {
     setCheckState((prev) => !prev);
   };
 
-  let testamentList = [
-    { title: titleOT ? titleOT : "Old Testament", bookList: currentBookListOT },
-    { title: titleNT ? titleNT : "New Testament", bookList: currentBookListNT },
-  ];
+  let testamentList = [];
 
-  if (testaments === "nt") {
-    testamentList = [
-      {
-        title: titleNT ? titleNT : "New Testament",
-        bookList: currentBookListNT,
-      },
-    ];
-  } else if (testaments === "ot") {
-    testamentList = [
-      {
-        title: titleOT ? titleOT : "Old Testament",
-        bookList: currentBookListOT,
-      },
-    ];
+  switch (testaments) {
+    case 'nt':
+      testamentList = [
+        {
+          title: titleNT,
+          bookList: currentBookListNT,
+        },
+      ];
+      break;
+
+    case 'ot':
+      testamentList = [
+        {
+          title: titleOT,
+          bookList: currentBookListOT,
+        },
+      ];
+      break;
+    case 'all':
+      testamentList = [
+        { title: titleOT, bookList: currentBookListOT },
+        { title: titleNT, bookList: currentBookListNT },
+      ];
+      if (sortFirstNT) {
+        testamentList.reverse();
+      }
+      break;
+
+    default:
+      break;
   }
 
-  if (sortFirstNT === true) {
-    testamentList.reverse();
-  }
-
-  const hideCheckRender = check ? (
+  const checkboxRender = showCheckbox ? (
     <FormControlLabel
+      classes={{
+        label: BibleBookListClasses?.label,
+      }}
       control={
         <Checkbox
           checked={checkState}
           onChange={handleChange}
-          color="primary"
+          color='primary'
         />
       }
-      label={label}
+      label={labelForCheckbox}
     />
   ) : (
-    []
+    ''
   );
+
   return (
     <>
-      {hideCheckRender}
+      {checkboxRender}
       {testamentList.map((el, index) => {
         return (
           <BookList
-            title={showTitle === true ? el.title : ""}
+            title={showTitle ? el.title : ''}
             bookList={el.bookList}
             showInactive={!checkState}
             onClickBook={onClickBook}
             selectedBookId={selectedBookId}
-            bookListClasses={bookListClasses}
+            bookListClasses={{
+              title: BibleBookListClasses?.title,
+              book: BibleBookListClasses?.book,
+              bookList: BibleBookListClasses?.bookList,
+            }}
             bookClasses={bookClasses}
             key={index}
           />
@@ -105,15 +119,20 @@ function BibleBookList({
 }
 
 BibleBookList.defaultProps = {
-  check: false,
-  testaments: "all",
+  showCheckbox: false,
+  testaments: 'all',
+  titleOT: 'Old Testament',
+  titleNT: 'New Testament',
+  showInactive: true,
+  onClickBook: () => {},
+  labelForCheckbox: 'Show only existing books',
+  titleBooks: {},
+  BibleBookListClasses: {},
+  availableBookList: [],
 };
 
 BibleBookList.propTypes = {
-  /**
-   * When prop is all, show 2 Testaments
-   */
-  testaments: PropTypes.string,
+  testaments: PropTypes.oneOf(['all', 'nt', 'ot']),
   /**
    * Block header of "New Testament"
    */
@@ -127,38 +146,40 @@ BibleBookList.propTypes = {
    */
   showTitle: PropTypes.bool,
   /**
-   * When true, show first NT, second - OT
+   * When true, show first New Testament, second - Old Testament
    */
   sortFirstNT: PropTypes.bool,
   /**
-   * Array of bookId
+   * Array of existing bookId's
    */
   availableBookList: PropTypes.array,
   /**
-   * Array of bookId with titles ,needfull to translate
+   * Array of bookId with the titles to be translated. If not set - get the default value in English
    */
-  titleBook: PropTypes.object,
+  titleBooks: PropTypes.object,
   /**
-   * When show 1 Testament, need to write title of Testament
+   * show or hide checkbox that show only existing books
    */
-  check: PropTypes.bool,
+  showCheckbox: PropTypes.bool,
+  /** Whether to display inactive books */
+  showInactive: PropTypes.bool,
   /**
-   * label of check
+   * label of checkbox
    */
-  label: PropTypes.string,
+  labelForCheckbox: PropTypes.string,
 
-  chapterListClasses: PropTypes.objectOf(
+  BibleBookListClasses: PropTypes.objectOf(
     PropTypes.shape({
-      /** chapter className */
-      chapter: PropTypes.string,
-      /** chapterList className */
-      chapterList: PropTypes.string,
+      /** title className */
+      title: PropTypes.string,
+      /** book className */
+      book: PropTypes.string,
+      /** bookList className */
+      bookList: PropTypes.string,
+      /** className for label of checkbox */
+      label: PropTypes.string,
     })
   ),
-  chapterClasses: PropTypes.object,
-  /** An open chapter, a different style will be applied to it */
-
-  bookListClasses: PropTypes.string,
   bookClasses: PropTypes.object,
   /** An open book, a different style will be applied to it */
   selectedBookId: PropTypes.string,
