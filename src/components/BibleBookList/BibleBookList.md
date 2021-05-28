@@ -2,7 +2,7 @@ Show 2 Testaments
 
 ```jsx
 import React from "react";
-import { BibleBookList } from "demo-bsa-reference-rcl";
+import { BibleBookList } from "@texttree/tt-reference-rcl";
 
 const titleBooks = {
   mat: "Матфей", mrk: "Марк", luk: "Лука", tit: "Титу",
@@ -18,16 +18,16 @@ const availableBookList = [
 ];
 
 <BibleBookList
-  titleBooks={titleBooks}
-  showInactive={false}
-  availableBookList={availableBookList}
-  showCheckbox={true}
-  selectedBookId={selectedBookId}
-  onClickBook={onClickBook}
   testaments="all"
-  titleOT="Ветхий завет"
   showTitle={true}
   sortFirstNT={true}
+  showInactive={false}
+  showCheckbox={true}
+  titleOT="Ветхий завет"
+  titleBooks={titleBooks}
+  availableBookList={availableBookList}
+  selectedBookId={selectedBookId}
+  onClickBook={onClickBook}
 />;
 ```
 
@@ -35,7 +35,7 @@ Show 1 Testament
 
 ```jsx
 import React from "react";
-import { BibleBookList } from "demo-bsa-reference-rcl";
+import { BibleBookList } from "@texttree/tt-reference-rcl";
 
 const titleBooks = {
   mat: "Матфей", mrk: "Марк",
@@ -47,20 +47,21 @@ const availableBookList = [
   "mat", "1ko", "rev", "tit",
 ];
 
-  <BibleBookList
-  titleBooks={titleBooks}
-  availableBookList={availableBookList}
+<BibleBookList
   testaments="ot"
+  showTitle={true}
   titleOT="OT"
   titleNT="NT"
-  showTitle={true}/>;
+  titleBooks={titleBooks}
+  availableBookList={availableBookList}
+/>;
 ```
 
 Use styles
 
 ```jsx
 import React from "react";
-import { BibleBookList } from "demo-bsa-reference-rcl";
+import { BibleBookList } from "@texttree/tt-reference-rcl";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -87,12 +88,12 @@ const availableBookList = [
 ];
 
 <BibleBookList
+  testaments="ot"
+  showCheckbox={true}
+  showTitle={true}
+  titleOT="Ветхий завет"
   availableBookList={availableBookList}
   selectedBookId="exo"
   BibleBookListClasses={classes}
-  showCheckbox={true}
-  testaments="ot"
-  titleOT="Ветхий завет"
-  showTitle={true}
 />;
 ```
