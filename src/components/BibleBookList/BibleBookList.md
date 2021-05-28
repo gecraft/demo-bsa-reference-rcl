@@ -5,8 +5,7 @@ import React from "react";
 import { BibleBookList } from "demo-bsa-reference-rcl";
 
 const titleBooks = {
-  mat: "Матфей", mrk: "Марк",
-  luk: "Лука", tit: "Титу",
+  mat: "Матфей", mrk: "Марк", luk: "Лука", tit: "Титу",
 };
 
 const [selectedBookId, setSelectedBookId] = React.useState("exo");
@@ -22,7 +21,6 @@ const availableBookList = [
   titleBooks={titleBooks}
   showInactive={false}
   availableBookList={availableBookList}
-  labelForCheckbox="show existing book"
   showCheckbox={true}
   selectedBookId={selectedBookId}
   onClickBook={onClickBook}
@@ -52,7 +50,6 @@ const availableBookList = [
   <BibleBookList
   titleBooks={titleBooks}
   availableBookList={availableBookList}
-  showCheckbox={true}
   testaments="ot"
   titleOT="OT"
   titleNT="NT"

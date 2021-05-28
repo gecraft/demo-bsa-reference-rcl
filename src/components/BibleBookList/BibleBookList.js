@@ -120,6 +120,7 @@ function BibleBookList({
 
 BibleBookList.defaultProps = {
   showCheckbox: false,
+  sortFirstNT: false,
   testaments: 'all',
   titleOT: 'Old Testament',
   titleNT: 'New Testament',
@@ -133,41 +134,25 @@ BibleBookList.defaultProps = {
 
 BibleBookList.propTypes = {
   testaments: PropTypes.oneOf(['all', 'nt', 'ot']),
-  /**
-   * Block header of "New Testament"
-   */
+  /** Block header of "New Testament" */
   titleNT: PropTypes.string,
-  /**
-   * Block header of "New Testament"
-   */
+  /** Block header of "Old Testament" */
   titleOT: PropTypes.string,
-  /**
-   * Show block header
-   */
+  /** Show block header */
   showTitle: PropTypes.bool,
-  /**
-   * When true, show first New Testament, second - Old Testament
-   */
+  /** When true, show first New Testament, second - Old Testament */
   sortFirstNT: PropTypes.bool,
-  /**
-   * Array of existing bookId's
-   */
+  /** Array of existing bookId's */
   availableBookList: PropTypes.array,
-  /**
-   * Array of bookId with the titles to be translated. If not set - get the default value in English
-   */
+  /** Array of bookId with the titles to be translated. If not set - get the default value in English */
   titleBooks: PropTypes.object,
-  /**
-   * show or hide checkbox that show only existing books
-   */
+  /** show or hide checkbox that show only existing books */
   showCheckbox: PropTypes.bool,
   /** Whether to display inactive books */
   showInactive: PropTypes.bool,
-  /**
-   * label of checkbox
-   */
+  /** label of checkbox */
   labelForCheckbox: PropTypes.string,
-
+  /** Object of className */
   BibleBookListClasses: PropTypes.objectOf(
     PropTypes.shape({
       /** title className */
@@ -180,10 +165,11 @@ BibleBookList.propTypes = {
       label: PropTypes.string,
     })
   ),
+  /** Custom mui styles for book button */
   bookClasses: PropTypes.object,
   /** An open book, a different style will be applied to it */
   selectedBookId: PropTypes.string,
-  /** Event by clicking on the book. Receives a book ID at the entrance.  */
+  /** Event by clicking on the book. Receives a bookId at the entrance.  */
   onClickBook: PropTypes.func,
 };
 
