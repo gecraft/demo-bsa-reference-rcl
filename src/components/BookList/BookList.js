@@ -1,7 +1,7 @@
-import React from "react";
-import Book from "../Book";
-import PropTypes from "prop-types";
-import { Box } from "@material-ui/core";
+import React from 'react';
+import Book from '../Book';
+import PropTypes from 'prop-types';
+import { Box } from '@material-ui/core';
 
 function BookList({
   title,
@@ -40,15 +40,16 @@ BookList.defaultProps = {
   bookList: [],
   showInactive: true,
   selectedBookId: '',
+  onClickBook: (bookId) => {},
 };
 
 BookList.propTypes = {
-  /** Block header, for example "New Testament" */
+  /** block header, for example "New Testament" */
   title: PropTypes.string,
   /** array of books */
   bookList: PropTypes.arrayOf(
     PropTypes.shape({
-      /** Is there a book or not */
+      /** is the book exists or not */
       isset: PropTypes.bool,
       /** unique three-letter identifier */
       identifier: PropTypes.string,
@@ -56,20 +57,20 @@ BookList.propTypes = {
       text: PropTypes.string,
     })
   ),
-  bookListClasses: PropTypes.objectOf(
-    PropTypes.shape({
-      /** title className */
-      title: PropTypes.string,
-      /** book className */
-      book: PropTypes.string,
-      /** bookList className */
-      bookList: PropTypes.string,
-    })
-  ),
+  /** object of className */
+  bookListClasses: PropTypes.shape({
+    /** title className */
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    /** book className */
+    book: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    /** bookList className */
+    bookList: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  }),
+  /** override the style of the Button mui component */
   bookClasses: PropTypes.object,
-  /** An open book, a different style will be applied to it */
+  /** an open book, a different style will be applied to it */
   selectedBookId: PropTypes.string,
-  /** Whether to display inactive books */
+  /** whether to display inactive books */
   showInactive: PropTypes.bool,
   /** Event by clicking on the book. Receives a book ID at the entrance */
   onClickBook: PropTypes.func,

@@ -18,7 +18,6 @@ function BibleBookList({
   BibleBookListClasses,
   bookClasses,
   testaments,
-  showTitle,
   sortFirstNT,
 }) {
   const [checkState, setCheckState] = useState(!showInactive);
@@ -99,7 +98,7 @@ function BibleBookList({
       {testamentList.map((el, index) => {
         return (
           <BookList
-            title={showTitle ? el.title : ''}
+            title={el.title}
             bookList={el.bookList}
             showInactive={!checkState}
             onClickBook={onClickBook}
@@ -119,71 +118,52 @@ function BibleBookList({
 }
 
 BibleBookList.defaultProps = {
-  showCheckbox: false,
+  showCheckbox: true,
+  sortFirstNT: false,
   testaments: 'all',
-  titleOT: 'Old Testament',
-  titleNT: 'New Testament',
+  titleOT: '',
+  titleNT: '',
   showInactive: true,
-  onClickBook: () => {},
+  onClickBook: (bookId) => {},
   labelForCheckbox: 'Show only existing books',
   titleBooks: {},
-  BibleBookListClasses: {},
   availableBookList: [],
 };
 
 BibleBookList.propTypes = {
   testaments: PropTypes.oneOf(['all', 'nt', 'ot']),
-  /**
-   * Block header of "New Testament"
-   */
+  /** block header of "New Testament" */
   titleNT: PropTypes.string,
-  /**
-   * Block header of "New Testament"
-   */
+  /** block header of "Old Testament" */
   titleOT: PropTypes.string,
-  /**
-   * Show block header
-   */
-  showTitle: PropTypes.bool,
-  /**
-   * When true, show first New Testament, second - Old Testament
-   */
+  /** when true, show first New Testament, second - Old Testament */
   sortFirstNT: PropTypes.bool,
-  /**
-   * Array of existing bookId's
-   */
+  /** array of existing bookId's */
   availableBookList: PropTypes.array,
-  /**
-   * Array of bookId with the titles to be translated. If not set - get the default value in English
-   */
+  /** Array of bookId with the titles to be translated. If not set - get the default value in English */
   titleBooks: PropTypes.object,
-  /**
-   * show or hide checkbox that show only existing books
-   */
+  /** show or hide checkbox that show only existing books */
   showCheckbox: PropTypes.bool,
-  /** Whether to display inactive books */
+  /** whether to display inactive books */
   showInactive: PropTypes.bool,
-  /**
-   * label of checkbox
-   */
+  /** label of checkbox */
   labelForCheckbox: PropTypes.string,
-
-  BibleBookListClasses: PropTypes.objectOf(
-    PropTypes.shape({
-      /** title className */
-      title: PropTypes.string,
-      /** book className */
-      book: PropTypes.string,
-      /** bookList className */
-      bookList: PropTypes.string,
-      /** className for label of checkbox */
-      label: PropTypes.string,
-    })
-  ),
+  /** object of className */
+  BibleBookListClasses: PropTypes.shape({
+    /** title className */
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    /** book className */
+    book: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    /** bookList className */
+    bookList: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    /** className for label of checkbox */
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  }),
+  /** override the style of the Button mui component */
   bookClasses: PropTypes.object,
-  /** An open book, a different style will be applied to it */
+  /** an open book, a different style will be applied to it */
   selectedBookId: PropTypes.string,
-  /** Event by clicking on the book. Receives a book ID at the entrance.  */
+  /** Event by clicking on the book. Receives a bookId at the entrance.  */
   onClickBook: PropTypes.func,
 };
 
