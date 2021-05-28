@@ -40,6 +40,7 @@ BookList.defaultProps = {
   bookList: [],
   showInactive: true,
   selectedBookId: '',
+  onClickBook: (bookId) => {},
 };
 
 BookList.propTypes = {

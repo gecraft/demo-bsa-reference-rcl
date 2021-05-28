@@ -18,7 +18,6 @@ function BibleBookList({
   BibleBookListClasses,
   bookClasses,
   testaments,
-  showTitle,
   sortFirstNT,
 }) {
   const [checkState, setCheckState] = useState(!showInactive);
@@ -99,7 +98,7 @@ function BibleBookList({
       {testamentList.map((el, index) => {
         return (
           <BookList
-            title={showTitle ? el.title : ''}
+            title={el.title}
             bookList={el.bookList}
             showInactive={!checkState}
             onClickBook={onClickBook}
@@ -119,16 +118,15 @@ function BibleBookList({
 }
 
 BibleBookList.defaultProps = {
-  showCheckbox: false,
+  showCheckbox: true,
   sortFirstNT: false,
   testaments: 'all',
-  titleOT: 'Old Testament',
-  titleNT: 'New Testament',
+  titleOT: '',
+  titleNT: '',
   showInactive: true,
-  onClickBook: () => {},
+  onClickBook: (bookId) => {},
   labelForCheckbox: 'Show only existing books',
   titleBooks: {},
-  BibleBookListClasses: {},
   availableBookList: [],
 };
 
@@ -138,8 +136,6 @@ BibleBookList.propTypes = {
   titleNT: PropTypes.string,
   /** block header of "Old Testament" */
   titleOT: PropTypes.string,
-  /** show block header */
-  showTitle: PropTypes.bool,
   /** when true, show first New Testament, second - Old Testament */
   sortFirstNT: PropTypes.bool,
   /** array of existing bookId's */

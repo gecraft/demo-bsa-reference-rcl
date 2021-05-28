@@ -33,6 +33,8 @@ function ChapterList({
 ChapterList.defaultProps = {
   chapterList: [],
   selectedChapter: '',
+  chapterPrefix: '',
+  onClickChapter: (chapterId) => {},
 };
 
 ChapterList.propTypes = {

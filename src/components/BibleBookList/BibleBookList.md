@@ -19,11 +19,10 @@ const availableBookList = [
 
 <BibleBookList
   testaments="all"
-  showTitle={true}
   sortFirstNT={true}
   showInactive={false}
-  showCheckbox={true}
-  titleOT="Ветхий завет"
+  titleOT="Old Testament"
+  titleNT="New Testament"
   titleBooks={titleBooks}
   availableBookList={availableBookList}
   selectedBookId={selectedBookId}
@@ -49,9 +48,9 @@ const availableBookList = [
 
 <BibleBookList
   testaments="ot"
-  showTitle={true}
   titleOT="OT"
   titleNT="NT"
+  showCheckbox={false}
   titleBooks={titleBooks}
   availableBookList={availableBookList}
 />;
@@ -89,8 +88,6 @@ const availableBookList = [
 
 <BibleBookList
   testaments="ot"
-  showCheckbox={true}
-  showTitle={true}
   titleOT="Ветхий завет"
   availableBookList={availableBookList}
   selectedBookId="exo"
