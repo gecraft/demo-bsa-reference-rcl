@@ -5,7 +5,7 @@ Show list of Books
 ```jsx
 import React from "react";
 
-import { BookList } from "demo-bsa-reference-rcl";
+import { BookList } from "@texttree/tt-reference-rcl";
 
 <BookList
   title="New Testament"
@@ -35,7 +35,7 @@ import React, { useState } from "react";
 
 import { Button } from "@material-ui/core";
 
-import { BookList } from "demo-bsa-reference-rcl";
+import { BookList } from "@texttree/tt-reference-rcl";
 
 const [showInactive, setShowInactive] = useState(false);
 
@@ -87,7 +87,7 @@ const [showInactive, setShowInactive] = useState(false);
 
 ```jsx
 import React from "react";
-import { BookList } from "demo-bsa-reference-rcl";
+import { BookList } from "@texttree/tt-reference-rcl";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({

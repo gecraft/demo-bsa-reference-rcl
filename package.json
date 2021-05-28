@@ -1,9 +1,9 @@
 {
-  "name": "@texttree/demo-bsa-reference-rcl",
+  "name": "@texttree/tt-reference-rcl",
   "version": "0.3.4",
   "main": "dist/index.js",
   "license": "MIT",
-  "url": "https://github.com/gecraft/demo-bsa-reference-rcl",
+  "url": "https://github.com/texttree/tt-reference-rcl",
   "scripts": {
     "start": "styleguidist server",
     "build": "styleguidist build",
@@ -31,11 +31,11 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gecraft/tt-reference-rcl.git"
+    "url": "git+https://github.com/texttree/tt-reference-rcl.git"
   },
   "author": "",
   "bugs": {
-    "url": "https://github.com/gecraft/tt-reference-rcl/issues"
+    "url": "https://github.com/texttree/tt-reference-rcl/issues"
   },
-  "homepage": "https://github.com/gecraft/tt-reference-rcl#readme"
+  "homepage": "https://github.com/texttree/tt-reference-rcl#readme"
 }

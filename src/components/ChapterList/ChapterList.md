@@ -1,24 +1,27 @@
-Array of buttons - selected current chapter
+List of chapters
 
 ```jsx
 import React from "react";
-import { ChapterList } from "demo-bsa-reference-rcl";
+import { ChapterList } from "@texttree/tt-reference-rcl";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  chapter: {
+  chapterList: {
     margin: theme.spacing(1),
   },
-  chapterList: {
-    display: "flex",
+  chapter: {
+    textTransform:"inherit",
+    border:"1px solid #ccc",
   },
 }));
+
 const classes = useStyles();
+
 <ChapterList
   selectedChapter="3"
-  chapterList={["1", "2", "3", "4"]}
-  text="Chapter"
   chapterListClasses={classes}
+  chapterList={["1", "2", "3", "4"]}
+  chapterPrefix="Chapter"
   onClickChapter={(chapterId) => {
     alert("chapterId " + chapterId);
   }}

@@ -5,7 +5,7 @@ Show book button
 ```jsx
 import React from "react";
 
-import { Book } from "demo-bsa-reference-rcl";
+import { Book } from "@texttree/tt-reference-rcl";
 
 <Book
   bookId="mar"
@@ -25,7 +25,7 @@ If isset = true, the book exists. isSelected indicates whether this is the curre
 ```jsx
 import React from "react";
 
-import { Book } from "demo-bsa-reference-rcl";
+import { Book } from "@texttree/tt-reference-rcl";
 
 const onClickBook = (bookId) => alert("bookId " + bookId);
 
@@ -56,7 +56,7 @@ You can override the styles of the entire Button component.
 
 ```jsx
 import React from "react";
-import { Book } from "demo-bsa-reference-rcl";
+import { Book } from "@texttree/tt-reference-rcl";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -122,7 +122,7 @@ You can also use a regular class.
 
 ```jsx
 import React from "react";
-import { Book } from "demo-bsa-reference-rcl";
+import { Book } from "@texttree/tt-reference-rcl";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({

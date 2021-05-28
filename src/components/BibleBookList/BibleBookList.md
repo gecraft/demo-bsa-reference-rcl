@@ -2,11 +2,10 @@ Show 2 Testaments
 
 ```jsx
 import React from "react";
-import { BibleBookList } from "demo-bsa-reference-rcl";
+import { BibleBookList } from "@texttree/tt-reference-rcl";
 
 const titleBooks = {
-  mat: "Матфей", mrk: "Марк",
-  luk: "Лука", tit: "Титу",
+  mat: "Матфей", mrk: "Марк", luk: "Лука", tit: "Титу",
 };
 
 const [selectedBookId, setSelectedBookId] = React.useState("exo");
@@ -19,17 +18,15 @@ const availableBookList = [
 ];
 
 <BibleBookList
-  titleBooks={titleBooks}
+  testaments="all"
+  sortFirstNT={true}
   showInactive={false}
+  titleOT="Old Testament"
+  titleNT="New Testament"
+  titleBooks={titleBooks}
   availableBookList={availableBookList}
-  labelForCheckbox="show existing book"
-  showCheckbox={true}
   selectedBookId={selectedBookId}
   onClickBook={onClickBook}
-  testaments="all"
-  titleOT="Ветхий завет"
-  showTitle={true}
-  sortFirstNT={true}
 />;
 ```
 
@@ -37,7 +34,7 @@ Show 1 Testament
 
 ```jsx
 import React from "react";
-import { BibleBookList } from "demo-bsa-reference-rcl";
+import { BibleBookList } from "@texttree/tt-reference-rcl";
 
 const titleBooks = {
   mat: "Матфей", mrk: "Марк",
@@ -49,21 +46,21 @@ const availableBookList = [
   "mat", "1ko", "rev", "tit",
 ];
 
-  <BibleBookList
-  titleBooks={titleBooks}
-  availableBookList={availableBookList}
-  showCheckbox={true}
+<BibleBookList
   testaments="ot"
   titleOT="OT"
   titleNT="NT"
-  showTitle={true}/>;
+  showCheckbox={false}
+  titleBooks={titleBooks}
+  availableBookList={availableBookList}
+/>;
 ```
 
 Use styles
 
 ```jsx
 import React from "react";
-import { BibleBookList } from "demo-bsa-reference-rcl";
+import { BibleBookList } from "@texttree/tt-reference-rcl";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -90,12 +87,10 @@ const availableBookList = [
 ];
 
 <BibleBookList
+  testaments="ot"
+  titleOT="Ветхий завет"
   availableBookList={availableBookList}
   selectedBookId="exo"
   BibleBookListClasses={classes}
-  showCheckbox={true}
-  testaments="ot"
-  titleOT="Ветхий завет"
-  showTitle={true}
 />;
 ```
