@@ -3,25 +3,25 @@ Show list of Books
 ### Minimal example
 
 ```jsx
-import React from "react";
+import React from 'react';
 
-import { BookList } from "@texttree/tt-reference-rcl";
+import { BookList } from '@texttree/tt-reference-rcl';
 
 <BookList
   title="New Testament"
   bookList={[
     {
-      identifier: "mat",
+      identifier: 'mat',
     },
     {
-      identifier: "mar",
+      identifier: 'mar',
     },
     {
-      identifier: "luk",
+      identifier: 'luk',
     },
   ]}
   onClickBook={(bookId) => {
-    alert("bookId " + bookId);
+    alert('bookId ' + bookId);
   }}
 />;
 ```
@@ -31,11 +31,11 @@ import { BookList } from "@texttree/tt-reference-rcl";
 Whether to show books that don't exist.
 
 ```jsx
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Button } from "@material-ui/core";
+import { Button } from '@material-ui/core';
 
-import { BookList } from "@texttree/tt-reference-rcl";
+import { BookList } from '@texttree/tt-reference-rcl';
 
 const [showInactive, setShowInactive] = useState(false);
 
@@ -47,7 +47,7 @@ const [showInactive, setShowInactive] = useState(false);
     style={{ margin: 15 }}
     onClick={() => setShowInactive((prev) => !prev)}
   >
-    {showInactive ? "Hide" : "Show"}
+    {showInactive ? 'Hide' : 'Show'}
   </Button>
 
   <BookList
@@ -56,28 +56,28 @@ const [showInactive, setShowInactive] = useState(false);
     bookList={[
       {
         isset: false,
-        identifier: "mat",
-        text: "Mathew",
+        identifier: 'mat',
+        text: 'Mathew',
       },
       {
         isset: false,
-        identifier: "mar",
-        text: "Mark",
+        identifier: 'mar',
+        text: 'Mark',
       },
       {
         isset: true,
-        identifier: "luk",
-        text: "Luke",
+        identifier: 'luk',
+        text: 'Luke',
       },
       {
         isset: true,
-        identifier: "tit",
-        text: "Titus",
+        identifier: 'tit',
+        text: 'Titus',
       },
     ]}
     selectedBookId="tit"
     onClickBook={(bookId) => {
-      alert("bookId " + bookId);
+      alert('bookId ' + bookId);
     }}
   />
 </>;
@@ -86,9 +86,9 @@ const [showInactive, setShowInactive] = useState(false);
 ### Using MUI Styles
 
 ```jsx
-import React from "react";
-import { BookList } from "@texttree/tt-reference-rcl";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import { BookList } from '@texttree/tt-reference-rcl';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -99,13 +99,13 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   bookList: {
-    border: "2px solid " + theme.palette.info.main,
+    border: '2px solid ' + theme.palette.info.main,
   },
 }));
 
 const classes = useStyles();
 
-const onClickBook = (bookId) => alert("bookId " + bookId);
+const onClickBook = (bookId) => alert('bookId ' + bookId);
 
 <>
   <BookList
@@ -113,25 +113,25 @@ const onClickBook = (bookId) => alert("bookId " + bookId);
     bookListClasses={classes}
     bookList={[
       {
-        identifier: "mat",
-        text: "Mathew",
+        identifier: 'mat',
+        text: 'Mathew',
       },
       {
-        identifier: "mar",
-        text: "Mark",
+        identifier: 'mar',
+        text: 'Mark',
       },
       {
-        identifier: "luk",
-        text: "Luke",
+        identifier: 'luk',
+        text: 'Luke',
       },
       {
-        identifier: "tit",
-        text: "Titus",
+        identifier: 'tit',
+        text: 'Titus',
       },
     ]}
     selectedBookId="tit"
     onClickBook={(bookId) => {
-      alert("bookId " + bookId);
+      alert('bookId ' + bookId);
     }}
   />
 </>;

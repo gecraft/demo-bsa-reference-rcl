@@ -1,35 +1,35 @@
 Button - selected current chapter
 
 ```jsx
-import React from "react";
+import React from 'react';
 
-import { Chapter } from "@texttree/tt-reference-rcl";
-import { makeStyles } from "@material-ui/core/styles";
+import { Chapter } from '@texttree/tt-reference-rcl';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(1),
     background: theme.palette.success.main,
     borderRadius: 6,
-    color: "#eee",
+    color: '#eee',
     height: 30,
-    padding: "0 15px",
+    padding: '0 15px',
   },
   textPrimary: {
-    "&:hover": {
+    '&:hover': {
       backgroundColor: theme.palette.success.dark,
       // Reset on touch devices, it doesn't add specificity
-      "@media (hover: none)": {
-        backgroundColor: "transparent",
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
       },
     },
   },
   textSecondary: {
     backgroundColor: theme.palette.info.main,
-    "&:hover": {
+    '&:hover': {
       backgroundColor: theme.palette.info.dark,
-      "@media (hover: none)": {
-        backgroundColor: "transparent",
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
       },
     },
   },
@@ -43,7 +43,7 @@ const classes = useStyles();
   isSelected={true}
   chapterPrefix="Chapter"
   onClick={(chapterId) => {
-    alert("chapterId " + chapterId);
+    alert('chapterId ' + chapterId);
   }}
 />;
 ```

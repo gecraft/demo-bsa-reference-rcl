@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 function Chapter({ isSelected, classes, className, chapterId, chapterPrefix, onClick }) {
   return (
-      <Button
-        className={className}
+    <Button
+      className={className}
       classes={classes}
-           color =  { isSelected ? 'secondary' : 'primary'}
+      color={isSelected ? 'secondary' : 'primary'}
       onClick={() => onClick(chapterId)}
     >
       {chapterPrefix} {chapterId}

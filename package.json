@@ -19,26 +19,22 @@
   "bugs": {
     "url": "https://github.com/texttree/tt-reference-rcl/issues"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged --relative"
-    }
-  },
   "lint-staged": {
-    "*.{js,md}": [
-      "lint",
-      "git add"
+    "src/**/*.js": [
+      "eslint --fix"
     ],
-    "*.{json}": [
-      "prettier",
-      "git add"
-    ]  },
+    "*.+(json|md)": [
+      "prettier --write"
+    ]
+  },
   "scripts": {
+    "prepare": "husky install",
     "start": "styleguidist server",
     "build": "styleguidist build",
-    "lint": "eslint --fix ./src",
-    "prettier": "prettier --write ./src",
-    "prepublishOnly": "rm -fr ./dist & babel ./src --out-dir ./dist -s inline"
+    "lint": "eslint --fix .",
+    "prettier": "prettier --write .",
+    "prepublishOnly": "rm -fr ./dist & babel ./src --out-dir ./dist -s inline",
+    "precommit": "lint-staged"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.x",
