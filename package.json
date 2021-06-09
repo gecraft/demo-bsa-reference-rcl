@@ -1,6 +1,7 @@
 {
   "name": "@texttree/tt-reference-rcl",
-  "version": "0.3.4",
+  "version": "1.0.0",
+  "private": false,
   "main": "dist/index.js",
   "license": "MIT",
   "url": "https://github.com/texttree/tt-reference-rcl",
@@ -28,14 +29,18 @@
     "react-styleguidist": "^11.1.6",
     "webpack": "^5.32.0"
   },
-  "description": "",
+  "description": "This library of components was made as part of the development of the Bible Study App and helps to display books and chapters from the books of the Bible.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/texttree/tt-reference-rcl.git"
   },
-  "author": "",
+  "author": "texttree",
   "bugs": {
     "url": "https://github.com/texttree/tt-reference-rcl/issues"
   },
-  "homepage": "https://github.com/texttree/tt-reference-rcl#readme"
+  "homepage": "https://github.com/texttree/tt-reference-rcl#readme",
+  "keywords": [
+    "bible",
+    "reference"
+  ]
 }
