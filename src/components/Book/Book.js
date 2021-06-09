@@ -2,21 +2,13 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
-function Book({
-  isset,
-  bookId,
-  classes,
-  className,
-  isSelected,
-  text,
-  onClick,
-}) {
+function Book({ isset, bookId, classes, className, isSelected, text, onClick }) {
   return (
     <Button
       className={className}
       classes={classes}
-      disabled={!Boolean(isset)}
       color={isSelected ? 'secondary' : 'primary'}
+      disabled={!Boolean(isset)}
       onClick={() => onClick(bookId)}
     >
       {text ?? bookId}
