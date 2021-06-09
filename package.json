@@ -21,18 +21,23 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged --relative"
     }
   },
   "lint-staged": {
-    "./src": [
-      "eslint --fix"
-    ]
-  },
+    "*.{js,md}": [
+      "lint",
+      "git add"
+    ],
+    "*.{json}": [
+      "prettier",
+      "git add"
+    ]  },
   "scripts": {
     "start": "styleguidist server",
     "build": "styleguidist build",
     "lint": "eslint --fix ./src",
+    "prettier": "prettier --write ./src",
     "prepublishOnly": "rm -fr ./dist & babel ./src --out-dir ./dist -s inline"
   },
   "peerDependencies": {
