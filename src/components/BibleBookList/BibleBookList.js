@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import BookList from '../BookList';
-import PropTypes from 'prop-types';
-import { BIBLE_LIST, BIBLE_BOOKS } from './config';
-import Checkbox from '@material-ui/core/Checkbox';
-import { FormControlLabel } from '@material-ui/core';
+import React, { useState } from "react";
+import BookList from "../BookList";
+import PropTypes from "prop-types";
+import { BIBLE_LIST, BIBLE_BOOKS, isEqual } from "./config";
+import Checkbox from "@material-ui/core/Checkbox";
+import { FormControlLabel } from "@material-ui/core";
 
 function BibleBookList({
   labelForCheckbox,
@@ -20,6 +20,11 @@ function BibleBookList({
   testaments,
   sortFirstNT,
 }) {
+  if (isEqual(availableBookList, Object.keys(BIBLE_BOOKS))) {
+    showCheckbox = false;
+  }
+  console.log(availableBookList);
+  console.log(Object.keys(BIBLE_BOOKS));
   const [checkState, setCheckState] = useState(!showInactive);
   const currentBookList = BIBLE_LIST.map((el) => {
     return {
@@ -30,11 +35,11 @@ function BibleBookList({
   });
 
   const currentBookListOT = currentBookList.filter(
-    (el) => el.categories === 'bible-ot'
+    (el) => el.categories === "bible-ot"
   );
 
   const currentBookListNT = currentBookList.filter(
-    (el) => el.categories === 'bible-nt'
+    (el) => el.categories === "bible-nt"
   );
   const handleChange = () => {
     setCheckState((prev) => !prev);
@@ -43,7 +48,7 @@ function BibleBookList({
   let testamentList = [];
 
   switch (testaments) {
-    case 'nt':
+    case "nt":
       testamentList = [
         {
           title: titleNT,
@@ -52,7 +57,7 @@ function BibleBookList({
       ];
       break;
 
-    case 'ot':
+    case "ot":
       testamentList = [
         {
           title: titleOT,
@@ -60,7 +65,7 @@ function BibleBookList({
         },
       ];
       break;
-    case 'all':
+    case "all":
       testamentList = [
         { title: titleOT, bookList: currentBookListOT },
         { title: titleNT, bookList: currentBookListNT },
@@ -83,13 +88,13 @@ function BibleBookList({
         <Checkbox
           checked={checkState}
           onChange={handleChange}
-          color='primary'
+          color="primary"
         />
       }
       label={labelForCheckbox}
     />
   ) : (
-    ''
+    ""
   );
 
   return (
@@ -120,18 +125,18 @@ function BibleBookList({
 BibleBookList.defaultProps = {
   showCheckbox: true,
   sortFirstNT: false,
-  testaments: 'all',
-  titleOT: '',
-  titleNT: '',
+  testaments: "all",
+  titleOT: "",
+  titleNT: "",
   showInactive: true,
   onClickBook: (bookId) => {},
-  labelForCheckbox: 'Show only existing books',
+  labelForCheckbox: "Show only existing books",
   titleBooks: {},
   availableBookList: [],
 };
 
 BibleBookList.propTypes = {
-  testaments: PropTypes.oneOf(['all', 'nt', 'ot']),
+  testaments: PropTypes.oneOf(["all", "nt", "ot"]),
   /** block header of "New Testament" */
   titleNT: PropTypes.string,
   /** block header of "Old Testament" */
