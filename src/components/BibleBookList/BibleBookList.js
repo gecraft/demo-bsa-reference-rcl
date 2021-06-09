@@ -41,10 +41,9 @@ function BibleBookList({
   };
 
   const check = (booklist) => {
-    let checkBoxCheck = new Set();
-    for (let book in booklist){ checkBoxCheck.add(booklist[book].isset);
-    console.log(checkBoxCheck)}
-  if (checkBoxCheck.length = 1) {return false}};
+    const checkBoxCheck = booklist.filter((el) => el.isset === false);
+    return checkBoxCheck.length > 0;
+  };
 
   let testamentList = [];
 
@@ -56,7 +55,9 @@ function BibleBookList({
           bookList: currentBookListNT,
         },
       ];
-      if( showCheckbox){showCheckbox= check(currentBookListNT)}
+      if (showCheckbox) {
+        showCheckbox = check(currentBookListNT);
+      }
       break;
 
     case "ot":
@@ -66,7 +67,9 @@ function BibleBookList({
           bookList: currentBookListOT,
         },
       ];
-      if( showCheckbox){showCheckbox= check(currentBookListOT)}
+      if (showCheckbox) {
+        showCheckbox = check(currentBookListOT);
+      }
       break;
     case "all":
       testamentList = [
@@ -76,19 +79,17 @@ function BibleBookList({
       if (sortFirstNT) {
         testamentList.reverse();
       }
-      if( showCheckbox)(showCheckbox= check(currentBookListOT)|| check(currentBookListOT))
+      if (showCheckbox)
+        showCheckbox = check(currentBookListOT) && check(currentBookListOT);
       break;
 
     default:
       break;
   }
- 
-  
 
-//   let checkBoxCheck = new Set();
-//   if (showCheckbox){
-// for (let book in currentBookListOT){ checkBoxCheck.add(currentBookListOT[book].isset))}};
-  
+  //   let checkBoxCheck = new Set();
+  //   if (showCheckbox){
+  // for (let book in currentBookListOT){ checkBoxCheck.add(currentBookListOT[book].isset))}};
 
   const checkboxRender = showCheckbox ? (
     <FormControlLabel
