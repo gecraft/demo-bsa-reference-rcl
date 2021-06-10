@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BookList from "../BookList";
 import PropTypes from "prop-types";
-import { BIBLE_LIST, BIBLE_BOOKS, isEqual } from "./config";
+import { BIBLE_LIST, BIBLE_BOOKS } from "./config";
 import Checkbox from "@material-ui/core/Checkbox";
 import { FormControlLabel } from "@material-ui/core";
 
@@ -45,6 +45,11 @@ function BibleBookList({
     setCheckState((prev) => !prev);
   };
 
+  const allBooksIsSet = (bookList) => {
+    const allBooks = bookList.filter((el) => el.isset === false);
+    return allBooks.length > 0;
+  };
+
   let testamentList = [];
 
   switch (testaments) {
@@ -55,6 +60,9 @@ function BibleBookList({
           bookList: currentBookListNT,
         },
       ];
+      if (showCheckbox) {
+        showCheckbox = allBooksIsSet(currentBookListNT);
+      }
       break;
 
     case "ot":
@@ -64,6 +72,9 @@ function BibleBookList({
           bookList: currentBookListOT,
         },
       ];
+      if (showCheckbox) {
+        showCheckbox = allBooksIsSet(currentBookListOT);
+      }
       break;
     case "all":
       testamentList = [
@@ -73,12 +84,15 @@ function BibleBookList({
       if (sortFirstNT) {
         testamentList.reverse();
       }
+      if (showCheckbox)
+        showCheckbox = allBooksIsSet(currentBookListOT) && allBooksIsSet(currentBookListOT);
       break;
 
     default:
       break;
   }
 
+  
   const checkboxRender = showCheckbox ? (
     <FormControlLabel
       classes={{

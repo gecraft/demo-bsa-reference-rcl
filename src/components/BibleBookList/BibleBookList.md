@@ -17,6 +17,12 @@ const availableBookList = [
   "mat", "mrk", "luk", "tit",
 ];
 
+const allbook = [
+    'mat', 'mrk', 'luk', 'jhn', 'act', 'rom', '1co',
+    '2co', 'gal', 'eph', 'php', 'col', '1th', '2th',
+    '1ti', '2ti', 'tit', 'phm', 'heb', 'jas', '1pe',
+    '2pe', '1jn', '2jn', '3jn', 'jud', 'rev'];
+
 <BibleBookList
   testaments="all"
   sortFirstNT={true}
@@ -37,13 +43,21 @@ import React from "react";
 import { BibleBookList } from "@texttree/tt-reference-rcl";
 
 const titleBooks = {
-  mat: "Матфей", mrk: "Марк",
-  luk: "Лука", tit: "Титу",
+  mat: "Матфей",
+  mrk: "Марк",
+  luk: "Лука",
+  tit: "Титу",
 };
 
 const availableBookList = [
-  "gen", "jon", "lev", "num",
-  "mat", "1ko", "rev", "tit",
+  "gen",
+  "jon",
+  "lev",
+  "num",
+  "mat",
+  "1ko",
+  "rev",
+  "tit",
 ];
 
 <BibleBookList
@@ -77,13 +91,21 @@ const useStyles = makeStyles((theme) => ({
   label: {
     fontWeight: "bold",
     textDecoration: "underline",
-  }
+  },
 }));
 
 const classes = useStyles();
 
 const availableBookList = [
-  "gen", "exo", "lev", "num", '1sa', '2sa', '1ch', 'isa', 'mal',
+  "gen",
+  "exo",
+  "lev",
+  "num",
+  "1sa",
+  "2sa",
+  "1ch",
+  "isa",
+  "mal",
 ];
 
 <BibleBookList
