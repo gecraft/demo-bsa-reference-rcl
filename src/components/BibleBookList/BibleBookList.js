@@ -42,7 +42,6 @@ function BibleBookList({
 
   const allBooksIsSet = (bookList) => {
     const allBooks = bookList.filter((el) => el.isset === false);
-    console.log(allBooks);
     return allBooks.length > 0;
   };
 
@@ -83,7 +82,6 @@ function BibleBookList({
       if (showCheckbox) {
         showCheckbox = allBooksIsSet(currentBookListOT) || allBooksIsSet(currentBookListNT);
       }
-      console.log(showCheckbox, allBooksIsSet(currentBookListOT), allBooksIsSet(currentBookListNT));
       break;
 
     default:
