@@ -475,14 +475,3 @@ export const NEW_TESTAMENT_LIST = [
   },
 ];
 export const BIBLE_LIST = OLD_TESTAMENT_LIST.concat(NEW_TESTAMENT_LIST);
-export const isEqual = (a, b) => {
-  if (a.length !== b.length) {
-    return false;
-  }
-  a.forEach((item) => {
-    if (!b.includes(item)) {
-      return false;
-    }
-  });
-  return true;
-};
