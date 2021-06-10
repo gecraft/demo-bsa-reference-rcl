@@ -17,7 +17,7 @@ const availableBookList = [
   "mat", "mrk", "luk", "tit",
 ];
 
-const allbook = [
+const NTBookList = [
     'mat', 'mrk', 'luk', 'jhn', 'act', 'rom', '1co',
     '2co', 'gal', 'eph', 'php', 'col', '1th', '2th',
     '1ti', '2ti', 'tit', 'phm', 'heb', 'jas', '1pe',
@@ -30,7 +30,7 @@ const allbook = [
   titleOT="Old Testament"
   titleNT="New Testament"
   titleBooks={titleBooks}
-  availableBookList={availableBookList}
+  availableBookList={availableBookList} // replace to NTBookList
   selectedBookId={selectedBookId}
   onClickBook={onClickBook}
 />;
