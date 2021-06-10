@@ -1,21 +1,21 @@
 Show 2 Testaments
 
 ```jsx
-import React from "react";
-import { BibleBookList } from "@texttree/tt-reference-rcl";
+import React from 'react';
+import { BibleBookList } from '@texttree/tt-reference-rcl';
 
 const titleBooks = {
-  mat: "Матфей", mrk: "Марк", luk: "Лука", tit: "Титу",
+  mat: 'Матфей',
+  mrk: 'Марк',
+  luk: 'Лука',
+  tit: 'Титу',
 };
 
-const [selectedBookId, setSelectedBookId] = React.useState("exo");
+const [selectedBookId, setSelectedBookId] = React.useState('exo');
 
 const onClickBook = (bookId) => setSelectedBookId(bookId);
 
-const availableBookList = [
-  "gen", "exo", "lev", "num",
-  "mat", "mrk", "luk", "tit",
-];
+const availableBookList = ['gen', 'exo', 'lev', 'num', 'mat', 'mrk', 'luk', 'tit'];
 
 const NTBookList = [
     'mat', 'mrk', 'luk', 'jhn', 'act', 'rom', '1co',
@@ -39,26 +39,17 @@ const NTBookList = [
 Show 1 Testament
 
 ```jsx
-import React from "react";
-import { BibleBookList } from "@texttree/tt-reference-rcl";
+import React from 'react';
+import { BibleBookList } from '@texttree/tt-reference-rcl';
 
 const titleBooks = {
-  mat: "Матфей",
-  mrk: "Марк",
-  luk: "Лука",
-  tit: "Титу",
+  mat: 'Матфей',
+  mrk: 'Марк',
+  luk: 'Лука',
+  tit: 'Титу',
 };
 
-const availableBookList = [
-  "gen",
-  "jon",
-  "lev",
-  "num",
-  "mat",
-  "1ko",
-  "rev",
-  "tit",
-];
+const availableBookList = ['gen', 'jon', 'lev', 'num', 'mat', '1ko', 'rev', 'tit'];
 
 <BibleBookList
   testaments="ot"
@@ -73,9 +64,9 @@ const availableBookList = [
 Use styles
 
 ```jsx
-import React from "react";
-import { BibleBookList } from "@texttree/tt-reference-rcl";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import { BibleBookList } from '@texttree/tt-reference-rcl';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -86,27 +77,17 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   bookList: {
-    border: "2px solid " + theme.palette.info.main,
+    border: '2px solid ' + theme.palette.info.main,
   },
   label: {
-    fontWeight: "bold",
-    textDecoration: "underline",
+    fontWeight: 'bold',
+    textDecoration: 'underline',
   },
 }));
 
 const classes = useStyles();
 
-const availableBookList = [
-  "gen",
-  "exo",
-  "lev",
-  "num",
-  "1sa",
-  "2sa",
-  "1ch",
-  "isa",
-  "mal",
-];
+const availableBookList = ['gen', 'exo', 'lev', 'num', '1sa', '2sa', '1ch', 'isa', 'mal'];
 
 <BibleBookList
   testaments="ot"

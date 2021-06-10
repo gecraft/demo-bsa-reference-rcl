@@ -1,1 +1,1 @@
-export { default } from "./BibleChapterList";
+export { default } from './BibleChapterList';

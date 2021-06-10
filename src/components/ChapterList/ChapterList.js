@@ -12,21 +12,19 @@ function ChapterList({
   onClickChapter,
 }) {
   return (
-    <>
-      <Box className={chapterListClasses?.chapterList}>
-        {chapterList.map((el, index) => (
-          <Chapter
-            chapterId={el}
-            key={index}
-            className={chapterListClasses?.chapter}
-            classes={chapterClasses}
-            isSelected={String(selectedChapter) === String(el)}
-            chapterPrefix={chapterPrefix}
-            onClick={onClickChapter}
-          />
-        ))}
-      </Box>
-    </>
+    <Box className={chapterListClasses?.chapterList}>
+      {chapterList.map((el, index) => (
+        <Chapter
+          chapterId={el}
+          chapterPrefix={chapterPrefix}
+          className={chapterListClasses?.chapter}
+          classes={chapterClasses}
+          isSelected={String(selectedChapter) === String(el)}
+          key={index}
+          onClick={onClickChapter}
+        />
+      ))}
+    </Box>
   );
 }
 
@@ -52,8 +50,7 @@ ChapterList.propTypes = {
   /** override the style of the Button mui component */
   chapterClasses: PropTypes.object,
   /** an open chapter, a different style will be applied to it */
-  selectedChapter: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
+  selectedChapter: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   /** Event by clicking on the chapter. Receives a chapter ID at the entrance. */
   onClickChapter: PropTypes.func,
 };
