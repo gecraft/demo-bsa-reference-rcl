@@ -17,6 +17,12 @@ const onClickBook = (bookId) => setSelectedBookId(bookId);
 
 const availableBookList = ['gen', 'exo', 'lev', 'num', 'mat', 'mrk', 'luk', 'tit'];
 
+const NTBookList = [
+    'mat', 'mrk', 'luk', 'jhn', 'act', 'rom', '1co',
+    '2co', 'gal', 'eph', 'php', 'col', '1th', '2th',
+    '1ti', '2ti', 'tit', 'phm', 'heb', 'jas', '1pe',
+    '2pe', '1jn', '2jn', '3jn', 'jud', 'rev'];
+
 <BibleBookList
   testaments="all"
   sortFirstNT={true}
@@ -24,7 +30,7 @@ const availableBookList = ['gen', 'exo', 'lev', 'num', 'mat', 'mrk', 'luk', 'tit
   titleOT="Old Testament"
   titleNT="New Testament"
   titleBooks={titleBooks}
-  availableBookList={availableBookList}
+  availableBookList={availableBookList} // replace to NTBookList
   selectedBookId={selectedBookId}
   onClickBook={onClickBook}
 />;
