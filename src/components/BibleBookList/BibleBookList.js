@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import BookList from "../BookList";
-import PropTypes from "prop-types";
-import { BIBLE_LIST, BIBLE_BOOKS } from "./config";
-import Checkbox from "@material-ui/core/Checkbox";
-import { FormControlLabel } from "@material-ui/core";
+import React, { useState } from 'react';
+import BookList from '../BookList';
+import PropTypes from 'prop-types';
+import { BIBLE_LIST, BIBLE_BOOKS } from './config';
+import Checkbox from '@material-ui/core/Checkbox';
+import { FormControlLabel } from '@material-ui/core';
 
 function BibleBookList({
   labelForCheckbox,
@@ -76,14 +76,14 @@ function BibleBookList({
         testamentList.reverse();
       }
       if (showCheckbox) {
-        showCheckbox = allBooksIsSet(currentBookListOT) || allBooksIsSet(currentBookListNT);
+        showCheckbox =
+          allBooksIsSet(currentBookListOT) || allBooksIsSet(currentBookListNT);
       }
       break;
 
     default:
       break;
   }
-
 
   const checkboxRender = showCheckbox ? (
     <FormControlLabel
