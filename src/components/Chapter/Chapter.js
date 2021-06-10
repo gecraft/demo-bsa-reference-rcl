@@ -2,14 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
-function Chapter({
-  isSelected,
-  classes,
-  className,
-  chapterId,
-  chapterPrefix,
-  onClick,
-}) {
+function Chapter({ isSelected, classes, className, chapterId, chapterPrefix, onClick }) {
   return (
     <Button
       className={className}
@@ -30,8 +23,7 @@ Chapter.defaultProps = {
 
 Chapter.propTypes = {
   /** chapter identifier  */
-  chapterId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
+  chapterId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   /** chapter prefix (chapter, psalm, etc. ) */
   chapterPrefix: PropTypes.string,
   /** override the style of the Button mui component */

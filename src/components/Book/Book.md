@@ -3,15 +3,15 @@ Show book button
 ### Minimal example
 
 ```jsx
-import React from "react";
+import React from 'react';
 
-import { Book } from "@texttree/tt-reference-rcl";
+import { Book } from '@texttree/tt-reference-rcl';
 
 <Book
   bookId="mar"
   text="Mark"
   onClick={(bookId) => {
-    alert("bookId " + bookId);
+    alert('bookId ' + bookId);
   }}
 />;
 ```
@@ -23,11 +23,11 @@ If isset = false, then there is no book and the button is inactive. isSelected a
 If isset = true, the book exists. isSelected indicates whether this is the current book or not.
 
 ```jsx
-import React from "react";
+import React from 'react';
 
-import { Book } from "@texttree/tt-reference-rcl";
+import { Book } from '@texttree/tt-reference-rcl';
 
-const onClickBook = (bookId) => alert("bookId " + bookId);
+const onClickBook = (bookId) => alert('bookId ' + bookId);
 
 <>
   <Book isset={false} bookId="tit" text="Inactive" />
@@ -55,47 +55,47 @@ const onClickBook = (bookId) => alert("bookId " + bookId);
 You can override the styles of the entire Button component.
 
 ```jsx
-import React from "react";
-import { Book } from "@texttree/tt-reference-rcl";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import { Book } from '@texttree/tt-reference-rcl';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(1),
     background: theme.palette.success.main,
     borderRadius: 6,
-    color: "#eee",
+    color: '#eee',
     height: 30,
-    padding: "0 15px",
+    padding: '0 15px',
   },
   textPrimary: {
-    "&:hover": {
+    '&:hover': {
       backgroundColor: theme.palette.success.dark,
       // Reset on touch devices, it doesn't add specificity
-      "@media (hover: none)": {
-        backgroundColor: "transparent",
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
       },
     },
   },
   textSecondary: {
     backgroundColor: theme.palette.info.main,
-    "&:hover": {
+    '&:hover': {
       backgroundColor: theme.palette.info.dark,
-      "@media (hover: none)": {
-        backgroundColor: "transparent",
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
       },
     },
   },
   disabled: {
-    background: "#ccc",
-    fontWeight: "bold",
-    border: "1px solid #777",
+    background: '#ccc',
+    fontWeight: 'bold',
+    border: '1px solid #777',
   },
 }));
 
 const classes = useStyles();
 
-const onClickBook = (bookId) => alert("bookId " + bookId);
+const onClickBook = (bookId) => alert('bookId ' + bookId);
 
 <>
   <Book isset={false} classes={classes} bookId="gen" text="Genesis" />
@@ -121,25 +121,25 @@ const onClickBook = (bookId) => alert("bookId " + bookId);
 You can also use a regular class.
 
 ```jsx
-import React from "react";
-import { Book } from "@texttree/tt-reference-rcl";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import { Book } from '@texttree/tt-reference-rcl';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   orangeButton: {
-    padding: "10px 30px",
-    color: "black",
+    padding: '10px 30px',
+    color: 'black',
   },
   smallButton: {
-    fontSize: "12px",
-    fontWeight: "bold",
+    fontSize: '12px',
+    fontWeight: 'bold',
     height: 24,
   },
 }));
 
 const classes = useStyles();
 
-const onClickBook = (bookId) => alert("bookId " + bookId);
+const onClickBook = (bookId) => alert('bookId ' + bookId);
 
 <>
   <Book
@@ -148,11 +148,6 @@ const onClickBook = (bookId) => alert("bookId " + bookId);
     text="Titus"
     onClick={onClickBook}
   />
-  <Book
-    className={classes.smallButton}
-    bookId="mar"
-    text="Mark"
-    onClick={onClickBook}
-  />
+  <Book className={classes.smallButton} bookId="mar" text="Mark" onClick={onClickBook} />
 </>;
 ```

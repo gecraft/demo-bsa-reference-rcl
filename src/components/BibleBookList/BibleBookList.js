@@ -29,15 +29,16 @@ function BibleBookList({
     };
   });
 
-  const currentBookListOT = currentBookList.filter(
-    (el) => el.categories === 'bible-ot'
-  );
+  const currentBookListOT = currentBookList.filter((el) => el.categories === 'bible-ot');
 
-  const currentBookListNT = currentBookList.filter(
-    (el) => el.categories === 'bible-nt'
-  );
+  const currentBookListNT = currentBookList.filter((el) => el.categories === 'bible-nt');
   const handleChange = () => {
     setCheckState((prev) => !prev);
+  };
+
+  const allBooksIsSet = (bookList) => {
+    const allBooks = bookList.filter((el) => el.isset === false);
+    return allBooks.length > 0;
   };
 
   let testamentList = [];
@@ -50,6 +51,9 @@ function BibleBookList({
           bookList: currentBookListNT,
         },
       ];
+      if (showCheckbox) {
+        showCheckbox = allBooksIsSet(currentBookListNT);
+      }
       break;
 
     case 'ot':
@@ -59,6 +63,9 @@ function BibleBookList({
           bookList: currentBookListOT,
         },
       ];
+      if (showCheckbox) {
+        showCheckbox = allBooksIsSet(currentBookListOT);
+      }
       break;
     case 'all':
       testamentList = [
@@ -67,6 +74,10 @@ function BibleBookList({
       ];
       if (sortFirstNT) {
         testamentList.reverse();
+      }
+      if (showCheckbox) {
+        showCheckbox =
+          allBooksIsSet(currentBookListOT) || allBooksIsSet(currentBookListNT);
       }
       break;
 
@@ -79,13 +90,7 @@ function BibleBookList({
       classes={{
         label: BibleBookListClasses?.label,
       }}
-      control={
-        <Checkbox
-          checked={checkState}
-          onChange={handleChange}
-          color='primary'
-        />
-      }
+      control={<Checkbox checked={checkState} color="primary" onChange={handleChange} />}
       label={labelForCheckbox}
     />
   ) : (
@@ -98,18 +103,18 @@ function BibleBookList({
       {testamentList.map((el, index) => {
         return (
           <BookList
-            title={el.title}
+            bookClasses={bookClasses}
             bookList={el.bookList}
-            showInactive={!checkState}
-            onClickBook={onClickBook}
-            selectedBookId={selectedBookId}
             bookListClasses={{
               title: BibleBookListClasses?.title,
               book: BibleBookListClasses?.book,
               bookList: BibleBookListClasses?.bookList,
             }}
-            bookClasses={bookClasses}
             key={index}
+            onClickBook={onClickBook}
+            selectedBookId={selectedBookId}
+            showInactive={!checkState}
+            title={el.title}
           />
         );
       })}

@@ -15,12 +15,12 @@ function BibleChapterList({
 
   return (
     <ChapterList
-      chapterPrefix={chapterPrefix}
-      chapterListClasses={chapterListClasses}
       chapterClasses={chapterClasses}
-      selectedChapter={selectedChapter}
       chapterList={chapters}
+      chapterListClasses={chapterListClasses}
+      chapterPrefix={chapterPrefix}
       onClickChapter={onClickChapter}
+      selectedChapter={selectedChapter}
     />
   );
 }
@@ -44,8 +44,7 @@ BibleChapterList.propTypes = {
   /** override the style of the Button mui component */
   chapterClasses: PropTypes.object,
   /** an open chapter, a different style will be applied to it */
-  selectedChapter: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
+  selectedChapter: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   /** Event by clicking on the chapter. Receives a chapter ID at the entrance. */
   onClickChapter: PropTypes.func,
 };

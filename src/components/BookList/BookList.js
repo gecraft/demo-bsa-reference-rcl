@@ -20,14 +20,14 @@ function BookList({
           (el, index) =>
             (showInactive || el.isset) && (
               <Book
-                isset={el.isset}
                 bookId={el.identifier}
-                key={index}
                 className={bookListClasses?.book}
                 classes={bookClasses}
                 isSelected={selectedBookId == el.identifier}
-                text={el.text}
+                isset={el.isset}
+                key={index}
                 onClick={onClickBook}
+                text={el.text}
               />
             )
         )}
