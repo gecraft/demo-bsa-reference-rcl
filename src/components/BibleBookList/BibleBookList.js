@@ -20,6 +20,11 @@ function BibleBookList({
   testaments,
   sortFirstNT,
 }) {
+  if (isEqual(availableBookList, Object.keys(BIBLE_BOOKS))) {
+    showCheckbox = false;
+  }
+  console.log(availableBookList);
+  console.log(Object.keys(BIBLE_BOOKS));
   const [checkState, setCheckState] = useState(!showInactive);
   const currentBookList = BIBLE_LIST.map((el) => {
     return {
