@@ -9,13 +9,14 @@ const titleBooks = {
   mrk: 'Марк',
   luk: 'Лука',
   tit: 'Титу',
+  obs: 'Открытые Библейские Истории',
 };
 
 const [selectedBookId, setSelectedBookId] = React.useState('exo');
 
 const onClickBook = (bookId) => setSelectedBookId(bookId);
 
-const availableBookList = ['gen', 'exo', 'lev', 'num', 'mat', 'mrk', 'luk', 'tit'];
+const availableBookList = ['gen', 'exo', 'lev', 'num', 'mat', 'mrk', 'luk', 'tit', 'obs'];
 
 const NTBookList = [
   'mat',
@@ -53,6 +54,8 @@ const NTBookList = [
   showInactive={false}
   titleOT="Old Testament"
   titleNT="New Testament"
+  titleOBS="OBS"
+  showOBS={true}
   titleBooks={titleBooks}
   availableBookList={availableBookList} // replace to NTBookList
   selectedBookId={selectedBookId}

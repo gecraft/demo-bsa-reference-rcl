@@ -69,10 +69,18 @@ export const NEW_TESTAMENT = {
   rev: 'Revelation',
 };
 
-export const BIBLE_BOOKS = {
-  ...NEW_TESTAMENT,
-  ...OLD_TESTAMENT,
+export const OBS = {
+  obs: 'Open Bible Story',
 };
+
+export const OBS_LIST = [
+  {
+    identifier: 'obs',
+    isset: false,
+    sort: 70,
+    categories: 'obs',
+  },
+];
 
 export const OLD_TESTAMENT_LIST = [
   {
@@ -474,4 +482,3 @@ export const NEW_TESTAMENT_LIST = [
     categories: 'bible-nt',
   },
 ];
-export const BIBLE_LIST = OLD_TESTAMENT_LIST.concat(NEW_TESTAMENT_LIST);
