@@ -38,7 +38,7 @@ function BibleBookList({
   }
   let bibleBooks;
   if (showOBS) {
-    bibleBooks = { ...OLD_TESTAMENT, ...NEW_TESTAMENT, OBS };
+    bibleBooks = { ...OLD_TESTAMENT, ...NEW_TESTAMENT, ...OBS };
   } else {
     bibleBooks = { ...OLD_TESTAMENT, ...NEW_TESTAMENT };
   }
@@ -172,6 +172,8 @@ BibleBookList.propTypes = {
   testaments: PropTypes.oneOf(['all', 'nt', 'ot']),
   /** block header of "New Testament" */
   titleNT: PropTypes.string,
+  /** block header of "OBS" */
+  titleOBS: PropTypes.string,
   /** block header of "Old Testament" */
   titleOT: PropTypes.string,
   /** when true, show first New Testament, second - Old Testament */
