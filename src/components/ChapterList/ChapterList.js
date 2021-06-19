@@ -11,9 +11,7 @@ function ChapterList({
   selectedChapter,
   onClickChapter,
 }) {
-  return (
-    <Box className={chapterListClasses?.chapterList}>
-      {chapterList.map((el, index) => (
+  chapterListRender = chapterList.map((el, index) => (
         <Chapter
           chapterId={el}
           chapterPrefix={chapterPrefix}
@@ -23,7 +21,11 @@ function ChapterList({
           key={index}
           onClick={onClickChapter}
         />
-      ))}
+      ))
+
+  return (
+    <Box className={chapterListClasses?.chapterList}>
+      {chapterListRender}
     </Box>
   );
 }

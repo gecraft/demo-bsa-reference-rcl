@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
 function Chapter({ isSelected, classes, className, chapterId, chapterPrefix, onClick }) {
+
   return (
     <Button
       className={className}
