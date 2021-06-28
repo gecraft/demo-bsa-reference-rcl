@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import BookList from '../BookList';
 import PropTypes from 'prop-types';
-import { BIBLE_LIST, BIBLE_BOOKS } from './config';
+import {
+  OLD_TESTAMENT_LIST,
+  NEW_TESTAMENT_LIST,
+  OBS_LIST,
+  OLD_TESTAMENT,
+  NEW_TESTAMENT,
+  OBS,
+} from './config';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControlLabel } from '@material-ui/core';
 
@@ -13,25 +20,39 @@ function BibleBookList({
   selectedBookId,
   titleOT,
   titleNT,
+  titleOBS,
   availableBookList,
   titleBooks,
   BibleBookListClasses,
   bookClasses,
   testaments,
   sortFirstNT,
+  showOBS,
 }) {
   const [checkState, setCheckState] = useState(!showInactive);
-  const currentBookList = BIBLE_LIST.map((el) => {
+  let bibleList;
+  if (showOBS) {
+    bibleList = OLD_TESTAMENT_LIST.concat(NEW_TESTAMENT_LIST).concat(OBS_LIST);
+  } else {
+    bibleList = OLD_TESTAMENT_LIST.concat(NEW_TESTAMENT_LIST);
+  }
+  let bibleBooks;
+  if (showOBS) {
+    bibleBooks = { ...OLD_TESTAMENT, ...NEW_TESTAMENT, ...OBS };
+  } else {
+    bibleBooks = { ...OLD_TESTAMENT, ...NEW_TESTAMENT };
+  }
+  const currentBookList = bibleList.map((el) => {
     return {
       ...el,
-      text: titleBooks[el.identifier] ?? BIBLE_BOOKS[el.identifier],
+      text: titleBooks[el.identifier] ?? bibleBooks[el.identifier],
       isset: availableBookList.includes(el.identifier),
     };
   });
 
   const currentBookListOT = currentBookList.filter((el) => el.categories === 'bible-ot');
-
   const currentBookListNT = currentBookList.filter((el) => el.categories === 'bible-nt');
+  const currentBookListOBS = currentBookList.filter((el) => el.categories === 'obs');
   const handleChange = () => {
     setCheckState((prev) => !prev);
   };
@@ -85,6 +106,16 @@ function BibleBookList({
       break;
   }
 
+  if (showOBS) {
+    testamentList = testamentList.concat({
+      title: titleOBS,
+      bookList: currentBookListOBS,
+    });
+    if (showCheckbox) {
+      showCheckbox = allBooksIsSet(currentBookListOBS);
+    }
+  }
+
   const checkboxRender = showCheckbox ? (
     <FormControlLabel
       classes={{
@@ -125,10 +156,12 @@ const bookListRender = testamentList.map((el, index) => {
 
 BibleBookList.defaultProps = {
   showCheckbox: true,
+  showOBS: false,
   sortFirstNT: false,
   testaments: 'all',
   titleOT: '',
   titleNT: '',
+  titleOBS: '',
   showInactive: true,
   onClickBook: (bookId) => {},
   labelForCheckbox: 'Show only existing books',
@@ -140,6 +173,8 @@ BibleBookList.propTypes = {
   testaments: PropTypes.oneOf(['all', 'nt', 'ot']),
   /** block header of "New Testament" */
   titleNT: PropTypes.string,
+  /** block header of "OBS" */
+  titleOBS: PropTypes.string,
   /** block header of "Old Testament" */
   titleOT: PropTypes.string,
   /** when true, show first New Testament, second - Old Testament */
@@ -150,6 +185,8 @@ BibleBookList.propTypes = {
   titleBooks: PropTypes.object,
   /** show or hide checkbox that show only existing books */
   showCheckbox: PropTypes.bool,
+  /** show or hide OBS block */
+  showOBS: PropTypes.bool,
   /** whether to display inactive books */
   showInactive: PropTypes.bool,
   /** label of checkbox */
