@@ -12,29 +12,26 @@ function BookList({
   onClickBook,
   showInactive,
 }) {
-
-  bookListRender = bookList.map(
-          (el, index) =>
-            (showInactive || el.isset) && (
-              <Book
-                bookId={el.identifier}
-                className={bookListClasses?.book}
-                classes={bookClasses}
-                isSelected={selectedBookId == el.identifier}
-                isset={el.isset}
-                key={index}
-                onClick={onClickBook}
-                text={el.text}
-              />
-            )
-        )
+  const bookListRender = bookList.map(
+    (el, index) =>
+      (showInactive || el.isset) && (
+        <Book
+          bookId={el.identifier}
+          className={bookListClasses?.book}
+          classes={bookClasses}
+          isSelected={selectedBookId == el.identifier}
+          isset={el.isset}
+          key={index}
+          onClick={onClickBook}
+          text={el.text}
+        />
+      )
+  );
 
   return (
     <>
       <div className={bookListClasses?.title}>{title}</div>
-      <Box className={bookListClasses?.bookList}>
-        {bookListRender}
-      </Box>
+      <Box className={bookListClasses?.bookList}>{bookListRender}</Box>
     </>
   );
 }

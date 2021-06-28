@@ -11,23 +11,19 @@ function ChapterList({
   selectedChapter,
   onClickChapter,
 }) {
-  chapterListRender = chapterList.map((el, index) => (
-        <Chapter
-          chapterId={el}
-          chapterPrefix={chapterPrefix}
-          className={chapterListClasses?.chapter}
-          classes={chapterClasses}
-          isSelected={String(selectedChapter) === String(el)}
-          key={index}
-          onClick={onClickChapter}
-        />
-      ))
+  const chapterListRender = chapterList.map((el, index) => (
+    <Chapter
+      chapterId={el}
+      chapterPrefix={chapterPrefix}
+      className={chapterListClasses?.chapter}
+      classes={chapterClasses}
+      isSelected={String(selectedChapter) === String(el)}
+      key={index}
+      onClick={onClickChapter}
+    />
+  ));
 
-  return (
-    <Box className={chapterListClasses?.chapterList}>
-      {chapterListRender}
-    </Box>
-  );
+  return <Box className={chapterListClasses?.chapterList}>{chapterListRender}</Box>;
 }
 
 ChapterList.defaultProps = {

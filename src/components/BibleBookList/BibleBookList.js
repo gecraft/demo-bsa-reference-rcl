@@ -112,7 +112,10 @@ function BibleBookList({
       bookList: currentBookListOBS,
     });
     if (showCheckbox) {
-      showCheckbox = allBooksIsSet(currentBookListOBS);
+      showCheckbox =
+        allBooksIsSet(currentBookListOBS) ||
+        allBooksIsSet(currentBookListOT) ||
+        allBooksIsSet(currentBookListNT);
     }
   }
 
@@ -127,7 +130,11 @@ function BibleBookList({
   ) : (
     ''
   );
-const bookListRender = testamentList.map((el, index) => {
+
+  return (
+    <>
+      {checkboxRender}
+      {testamentList.map((el, index) => {
         return (
           <BookList
             bookClasses={bookClasses}
@@ -144,12 +151,7 @@ const bookListRender = testamentList.map((el, index) => {
             title={el.title}
           />
         );
-      })
-
-  return (
-    <>
-      {checkboxRender}
-      {bookListRender}
+      })}
     </>
   );
 }
