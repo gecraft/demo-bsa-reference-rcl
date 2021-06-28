@@ -12,11 +12,8 @@ function BookList({
   onClickBook,
   showInactive,
 }) {
-  return (
-    <>
-      <div className={bookListClasses?.title}>{title}</div>
-      <Box className={bookListClasses?.bookList}>
-        {bookList.map(
+
+  bookListRender = bookList.map(
           (el, index) =>
             (showInactive || el.isset) && (
               <Book
@@ -30,7 +27,13 @@ function BookList({
                 text={el.text}
               />
             )
-        )}
+        )
+
+  return (
+    <>
+      <div className={bookListClasses?.title}>{title}</div>
+      <Box className={bookListClasses?.bookList}>
+        {bookListRender}
       </Box>
     </>
   );

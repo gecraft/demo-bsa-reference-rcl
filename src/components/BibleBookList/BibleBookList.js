@@ -96,11 +96,7 @@ function BibleBookList({
   ) : (
     ''
   );
-
-  return (
-    <>
-      {checkboxRender}
-      {testamentList.map((el, index) => {
+const bookListRender = testamentList.map((el, index) => {
         return (
           <BookList
             bookClasses={bookClasses}
@@ -117,7 +113,12 @@ function BibleBookList({
             title={el.title}
           />
         );
-      })}
+      })
+
+  return (
+    <>
+      {checkboxRender}
+      {bookListRender}
     </>
   );
 }
