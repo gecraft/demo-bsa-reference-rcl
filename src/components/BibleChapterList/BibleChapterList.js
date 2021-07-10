@@ -1,6 +1,6 @@
 import React from 'react';
 import ChapterList from '../ChapterList';
-import { BOOK_CHAPTERS } from './config';
+import { getBookChapters } from '../../core/Utils';
 import PropTypes from 'prop-types';
 
 function BibleChapterList({
@@ -11,7 +11,7 @@ function BibleChapterList({
   selectedChapter,
   onClickChapter,
 }) {
-  const chapters = bookId ? Object.keys(BOOK_CHAPTERS[bookId]) : [];
+  const chapters = bookId ? Object.keys(getBookChapters(bookId)) : [];
 
   return (
     <ChapterList
