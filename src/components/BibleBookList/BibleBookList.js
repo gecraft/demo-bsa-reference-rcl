@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import BookList from '../BookList';
 import PropTypes from 'prop-types';
-import {
-  OLD_TESTAMENT_LIST,
-  NEW_TESTAMENT_LIST,
-  OBS_LIST,
-  OLD_TESTAMENT,
-  NEW_TESTAMENT,
-  OBS,
-} from './config';
+import { getBookNames, getBookData } from '../../core/Utils';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControlLabel } from '@material-ui/core';
 
@@ -32,15 +25,15 @@ function BibleBookList({
   const [checkState, setCheckState] = useState(!showInactive);
   let bibleList;
   if (showOBS) {
-    bibleList = OLD_TESTAMENT_LIST.concat(NEW_TESTAMENT_LIST).concat(OBS_LIST);
+    bibleList = getBookData(['nt', 'ot', 'obs']);
   } else {
-    bibleList = OLD_TESTAMENT_LIST.concat(NEW_TESTAMENT_LIST);
+    bibleList = getBookData(['nt', 'ot']);
   }
   let bibleBooks;
   if (showOBS) {
-    bibleBooks = { ...OLD_TESTAMENT, ...NEW_TESTAMENT, ...OBS };
+    bibleBooks = getBookNames(['nt', 'ot', 'obs']);
   } else {
-    bibleBooks = { ...OLD_TESTAMENT, ...NEW_TESTAMENT };
+    bibleBooks = getBookNames(['nt', 'ot']);
   }
   const currentBookList = bibleList.map((el) => {
     return {

@@ -24,6 +24,10 @@ let sections = [
       'src/components/BibleChapterList/BibleChapterList.js',
     ],
   },
+  {
+    name: 'Core functions',
+    content: 'src/core/Utils.md',
+  },
 ];
 
 module.exports = {
