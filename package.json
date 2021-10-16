@@ -1,7 +1,7 @@
 {
   "name": "@texttree/tt-reference-rcl",
   "author": "TextTree.org",
-  "version": "1.1.2",
+  "version": "1.2.1",
   "description": "This library of components was made as part of the development of the Bible Study App and helps to display books and chapters from the books of the Bible.",
   "keywords": [
     "bible",
